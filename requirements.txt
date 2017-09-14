@@ -1,0 +1,7 @@
+Flask==0.9
+Flask-FlatPages==0.2
+Flask-Markdown==0.3
+Frozen-Flask==0.9
+Jinja2==2.6
+Markdown==2.6.7
+configparser==3.5.0
