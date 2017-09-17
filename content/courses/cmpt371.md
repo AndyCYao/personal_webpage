@@ -1,10 +1,6 @@
----
-layout: page
 title: "Computer Networking"
-code: "CMPT 371"
+date: 2017-03-01
 semester: "Winter 2017"
-
----
 
 ## CMPT 371 Computer Networking Winter 2017
 

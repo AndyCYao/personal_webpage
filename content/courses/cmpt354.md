@@ -1,10 +1,7 @@
----
-layout: page
 title: "Database Management"
-code: "CMPT 354"
+date: 2017-03-01
 semester: "Winter 2017"
 
----
 ## CMPT 354 Database Management Winter 2017
 
 ### ER Diagrams and Relational Diagram 

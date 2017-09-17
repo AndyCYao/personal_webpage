@@ -1,9 +1,6 @@
----
-layout: page
 title: "Data Structure and Algorithm II"
-code: "CMPT 307"
+date: 2017-09-16
 semester: "Fall 2017"
----
 
 # On Gale Shapely Algorithm (G.S)
 

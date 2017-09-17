@@ -1,9 +1,7 @@
----
-layout: default
 title: "Discrete Math II"
-code: "Macm 201"
+date: 2017-03-01
 semester: "Winter 2017"
----
+
 ## MACM 201 Discrete Math II Winter 2017
 
 
