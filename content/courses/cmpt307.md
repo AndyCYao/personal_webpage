@@ -101,10 +101,43 @@ man  Z's preference - A > B
 
 4. Here is the problem, Z would not have propose to B. Z is paired off with A before reaching B. thus S is not possible. and not a stable match.  
 
-
-
-
 man Y matches with woman A 
+
+#### Proof - All Execution of GS yields Woman Pessimality
+This is saying the proposee is worst off than the proposer.
+
+Each Woman receives the *worst valid partner*
+
+
+~~~code 
+ Context:
+ Preference:
+ proposer:  
+ X prefers A > B > C 
+ Y prefers B > A > C 
+ Z prefers A > B > C 
+
+ porposee: 
+ A prefers Y > X > Z 
+ B prefers X > Y > Z 
+ C prefers X > Y > Z 
+
+ stable match S* (produce by G.S)
+ {X-A, Y-B. Z-C}
+
+ stable match S 
+ {X-B, Y-A, Z-C}
+~~~
+
+*Proof By Contradiction* - suppose GS generates match S, rather than match S*
+
+1. so woman A matches with Y, instead of X 
+2. that means Y was rejected by B
+3. that means B has a partner better than Y , so X 
+4. but X's preference is A > B, so he would of proposed to A first , never reaching B 
+
+5. Therefore, match S would not happen under G.S algo. contradiction.  
+
 
 ### Does G.S always produce the same matches?
 Yes, because G.S produces man (porposer) - optimal matches.
