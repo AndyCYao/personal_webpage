@@ -42,7 +42,7 @@ def about():
 @app.route('/courses/')
 def courses():
     courses = [c for c in flatpages if c.path.startswith(COURSES_DIR)]
-    print(courses)
+    # print(courses)
     return render_template('courses.html', courses = courses)
 
 
@@ -52,12 +52,12 @@ def course(name):
     course = flatpages.get_or_404(path)
     return render_template('page.html', page = course)
 
-'''
-@app.route("/cv/")
+@app.route("/cv.pdf")
 def cv():
-    with open('build/static/assets/cv.pdf', 'rb') as static_file:
-        return send_file(static_file, attachment_filename="cv.pdf")
-'''
+    return send_file('static/assets/cv.pdf')
+    # with open('static/assets/cv.pdf', 'rb') as static_file:
+    #     return send_file(static_file, attachment_filename="cv.pdf")
+
 
 
 
@@ -65,7 +65,7 @@ def cv():
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         freezer.freeze()
-        local("cp -r static/assets build")
+        # local("cp -r static/assets build")
     elif len(sys.argv) > 1 and sys.argv[1] == "deploy":
         print("Deploying..")
         freezer.freeze()
