@@ -6,7 +6,7 @@
     {% for course in courses %}
         <li>
             <a href= "{{ url_for('course', name=course.path.replace('courses/', '')) }}">
-                {{course.title}} 
+                {{course.title}} ({{course.code}}) 
             </a>
 
         </li>
