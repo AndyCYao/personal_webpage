@@ -138,10 +138,89 @@ Each Woman receives the *worst valid partner*
 
 5. Therefore, match S would not happen under G.S algo. contradiction.  
 
-
-### Does G.S always produce the same matches?
+#### Does G.S always produce the same matches?
 Yes, because G.S produces man (porposer) - optimal matches.
 And man-optimal match are subset of all stable matches
 
+# GRAPHS
+
+## Terminologies
+Path	    - a sequence of nodes join by edges
+Simple Path - if all nodes are distinct
+Connected Graph - if for every pair of nodes, there is a path 
+Cycle 		- Same as Simple path, but start and end at the same node
 
 
+### Adjacency Matrix
+
+Graphs can be represented by a ${n x n}$ adjacency matrix
+where n is number of nodes. if there is an edge between two nodes, there is a 1 on the matrix. otherwise 0.
+
+so takes O(n^2) space 
+
+### Adjacency List 
+This is another way to represent a graph. It has a better way to find neighbors of each node. there is a n size list. each item in the list is a linked list of the neighbors that node has. 
+
+Space is ${theta(m+n)}$ where m is number of edges, and n is number of nodes
+
+say there are 3 nodes, and there are edges {(a,b), (b,c), (a,c)} then the adjacency list is 
+
+~~~code
+node a:  -> b  > c
+node b:  -> c
+node c: 
+~~~
+
+#### Properties
+
+AL is good for sparse graphs, because there will be fewer linked lists. and we can approximate the space as {O(n)}
+
+(NEED HELP ON THIS) Even if it is very dense, the size of the AL is at most the sum of the degrees of the nodes. 
+
+### Tree Properties 
+If ${G} is a undirected graph on ${n} nodes, any two of the following statements imply the third. 
+
+- G is connected
+- G does not contain a cycle 
+- G has ${n - 1} edges
+
+## Breadth First Search 
+
+Explores from start node S. and add layers, one layer at a time.
+
+Each layer ${n} is neighbors of layer ${n-1} node. 
+
+*Theorem* For each ${i}, ${L_i} consists of all nodes at exactly ${i} from ${s}. and there is a path from ${s} to ${t} ${IFF} ${t} appears in some layer 
+
+*Theorem* BFS runs in ${O(m+n)}$ time , if in adjacency list 
+
+- when we consider node ${u}, there are degree(u) incident edges (u,v)
+- total time processing edges is sum of of all degress = 2 * number of edges
+
+## Bipartite graph 
+short way to remember this is that if all nodes can be colored such that each edge has a blue node on one end and white on the other. 
+
+If a graph is bipartite, then there cannot be an odd length cycle. 
+
+### Bipartite grah and BFS Tree 
+to check if something is a bipartite graph, you run BFS to generate a BFS tree, then see if you can color each layer distinct color. 
+
+Exactly one of the following holdes:
+1. No edge of G joins two nodes of the same layer, then G is bipartite
+2. an edge of G joins two nodes of the same layer, and G has odd-length cycle, so not bipartite
+
+(But dont BFS tree hide edges that are not discovered?)
+
+## Directed Graphs
+### Terminologies
+Mutually Reachable - if there is a directed path from node ${u} to ${v} and vice versa 
+Strongly Connected - if every pair of nodes is mutually reachable, then the graph is *Strongly Connected*
+Strong Component - maximal subset of mutually reachable nodes. (cannot add more nodes without breaking 'strong connectness')
+
+
+*Theorem* - Can see if ${G} is strongly connected in ${O(m+n)} time
+
+1. Pick any node s 
+2. Run BFS from s in G 
+3. Run BFS from s in G reverse 
+4. if all nodes are reached in both BFS, then G is strongly connected
