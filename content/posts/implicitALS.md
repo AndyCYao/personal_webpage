@@ -1,7 +1,7 @@
 title: Implicit Recommender System
 date: 2017-09-21
 
-I made a recommender system in my co-op term. I have the HTML copy of the jupyter notebook [here](/static/implicitALS.html)
+I made a recommender system in my co-op term. I kept the model but modified it to use something other than my work's dataset. 
 
 A Flask app of the system in action [here](/recommender)
 

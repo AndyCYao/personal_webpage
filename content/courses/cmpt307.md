@@ -188,14 +188,16 @@ If ${G} is a undirected graph on ${n} nodes, any two of the following statements
 
 Explores from start node S. and add layers, one layer at a time.
 
-Each layer ${n} is neighbors of layer ${n-1} node. 
+Each layer ${n}$ is neighbors of layer ${n-1}$ node. 
 
-*Theorem* For each ${i}, ${L_i} consists of all nodes at exactly ${i} from ${s}. and there is a path from ${s} to ${t} ${IFF} ${t} appears in some layer 
+*Theorem* For each ${i}$, ${L_i}$ consists of all nodes at exactly ${i}$ from ${s}$. and there is a path from ${s}$ to ${t}$ ${IFF}$ ${t}$ appears in some layer 
 
 *Theorem* BFS runs in ${O(m+n)}$ time , if in adjacency list 
 
-- when we consider node ${u}, there are degree(u) incident edges (u,v)
+- In Adjacency lists, there are ${m}$ nodes and ${n}$ edges representing the node's neighbours.
+- when we consider node ${u}$, there are degree(u) incident edges (u,v)
 - total time processing edges is sum of of all degress = 2 * number of edges
+
 
 ## Bipartite graph 
 short way to remember this is that if all nodes can be colored such that each edge has a blue node on one end and white on the other. 
@@ -216,7 +218,8 @@ Exactly one of the following holdes:
 Mutually Reachable - if there is a directed path from node ${u} to ${v} and vice versa 
 Strongly Connected - if every pair of nodes is mutually reachable, then the graph is *Strongly Connected*
 Strong Component - maximal subset of mutually reachable nodes. (cannot add more nodes without breaking 'strong connectness')
-
+Directed Acyclic Graph - a directed graph that contains no directed cycles. 
+Topological order 	   - is an ordering of its nodes ${v1, v2, .. vn}$ so that every edge ${(v_i,v_j)}$ we have ${i < j}$
 
 *Theorem* - Can see if ${G} is strongly connected in ${O(m+n)} time
 
@@ -224,3 +227,15 @@ Strong Component - maximal subset of mutually reachable nodes. (cannot add more 
 2. Run BFS from s in G 
 3. Run BFS from s in G reverse 
 4. if all nodes are reached in both BFS, then G is strongly connected
+
+
+### Lemma, If G has a topological order, then G is a DAG 
+
+Proof by Contradiction. 
+
+1. Suppose G is not a DAG , then this means there exists a directed cycle
+2. let ${v_x}$ be the vertex with the lowest index in the cycle 
+so ${v_x...v_{x+1}.. v_{x+2}... v_{j} ... and ... v_x$
+
+3. for ${v_j}$ to go to ${v_x}$, ${j < x}$ , per topological order but ${j > x}$
+hence contradiction
