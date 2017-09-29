@@ -239,3 +239,27 @@ so ${v_x...v_{x+1}.. v_{x+2}... v_{j} ... and ... v_x$
 
 3. for ${v_j}$ to go to ${v_x}$, ${j < x}$ , per topological order but ${j > x}$
 hence contradiction
+
+### Topological Sort Given a DAG 
+- the Topological Sort is just a DFS with an extra temporary stack.
+
+~~~code 
+Version 1 From GeeksForGeeks
+instantiate a temp. stack 
+
+for each node x in unvisited nodes:
+	mark x as visited 
+	do recursive DFS on x (remember neighbor is only adjacent if theres an arc from x to its neighbor)
+		mark every node in this DFS as visited
+	when the DFS reach its end, push that end node onto the stack(this node has the lowest index)
+next 
+
+pop / print the stack , this is the topological sort. 
+
+Version 2 From Class 
+Find a node v with no incoming edge and order it first 
+'Delete' v from graph G 
+	Recursively Compute a topological ordering of G - {v}
+		append this order after v
+~~~
+

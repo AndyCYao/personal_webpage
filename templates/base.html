@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>{% block page_title %}Home{% endblock page_title %} | Andy Yao</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/baseStyle.css')}}">
 </head>
 <body class="container">
     <aside class="sidebar">
@@ -13,6 +13,7 @@
 		<li><a href="{{ url_for("about") }}" hreflang="en">About Me</a></li>
 		<li><a href="{{ url_for("courses") }}" hreflang="en">Courses</a></li>
 		<li><a href="{{ url_for("cv") }}" hreflang="en">CV</a></li>
+        <li><a href="https://github.com/AndyCYao">Github</a></li>
 	</ul>
     </aside>
     <div class="main-section">
@@ -21,8 +22,9 @@
     <p>Default content to be displayed</p>
 {% endblock content %}
     </div>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
-  </body>
+    <footer class="site-footer">
+        &copy; 2017 Andy Yao
+    </footer>
+</body>
 </html>
 

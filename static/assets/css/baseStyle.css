@@ -1,9 +1,16 @@
 /* Style the main content and the sidebar */
+body{
+    background-color: #fefefe;
+    font-family: "Asap", Palatino, "Hoefler Text", Georgia, serif;
+    font-size: 19px;
+    line-height: 28px;
+    color: #333334;
+}
 
 .container{
     width:900px;
     margin: 0 auto;
-    overflow:hidden;
+    overflow:scroll;
 }
 
 .main-section{
@@ -12,15 +19,14 @@
 }
 
 .sidebar{
-    float:left;
+    position:fixed;
     width:350px;
-    left:10px;
+    height: 100%;
+    overflow: auto;
 }
 
 .sidebar ul{
     list-style-type: none;
-    padding: none;
-    margin: none;
 }
 
 .sidebar ul a {
@@ -38,8 +44,24 @@
 
 
 .container p{
-    padding-top:100px;
-    text-align:center;
+    text-align:left;
+}
+
+.site-footer {
+  display:block;
+  clear: both;
+  position:fixed;
+  bottom:30px;
+}
+.site-footer p {
+  padding-top: 14px;
+  border-top: 1px solid #ddd;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 7px solid #eeeeee;
+  padding-left: 14px;
 }
 
 
@@ -53,10 +75,11 @@
     }
 
     .main-section, .sidebar{
-        width:auto;
+        width:100%;
         margin-bottom:20px;
         float:none;
         text-align: center;
+        position: relative;
     }
 
 }
