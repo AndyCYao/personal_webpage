@@ -3,7 +3,6 @@ from flask import Flask, render_template, send_file
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 from configparser import ConfigParser
-# from subprocess import call 
 from fabric.api import local
 
 DEBUG = True 
@@ -28,23 +27,21 @@ def index():
     # return "hello, world!"
     return render_template('index.html', posts=posts)
 
+@app.route("/about/")
+def about():
+    return render_template('about.html')
+
 @app.route('/posts/<name>/')
 def post(name):
     path = '{}/{}'.format(POST_DIR, name)
     post = flatpages.get_or_404(path)
     return render_template('page.html', page=post)
 
-@app.route("/about/")
-def about():
-    return render_template('about.html')
-
-
 @app.route('/courses/')
 def courses():
     courses = [c for c in flatpages if c.path.startswith(COURSES_DIR)]
     # print(courses)
     return render_template('courses.html', courses = courses)
-
 
 @app.route('/courses/<name>/')
 def course(name):
@@ -55,12 +52,6 @@ def course(name):
 @app.route("/cv.pdf")
 def cv():
     return send_file('static/assets/cv.pdf')
-    # with open('static/assets/cv.pdf', 'rb') as static_file:
-    #     return send_file(static_file, attachment_filename="cv.pdf")
-
-
-
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":
