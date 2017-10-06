@@ -24,11 +24,16 @@ in this game, each men and women individually rank their preferences of the othe
 the game goes in rounds. 
 
 Each round, the moves are:
-1. All single man propose, they propose to the woman on the top of their list who they have not proposed before. 
+1. All single man,  proposes, they propose to the woman on the top of their list who they have not proposed before. the men who have paired off or have proposed to everyone does not participate.  
 
-2. If a woman is not engaged, then she says yes. otherwise, she compares who she's with with the new proposer, and pairs off with the man who's higher on her list. 
+2. a. If a woman is not engaged, then she says yes. 
+
+2. b. otherwise, she compares who she's with with the new proposer, and pairs off with the man who's higher on her list. 
+
+2. c. otherwise, she rejects man. 
 
 the game repeats in rounds, until there is no more single man (ie everyone is paired off)
+returns S stable matches. 
 
 ### G.S deferred acceptance algorithm
 The algorithm claims the above game always produces a stable matching 
@@ -48,7 +53,6 @@ Proof By Contradiction -
 3. but this is not possible, as there are equal number of men and women, so one woman must have accept 'A'
 
 #### Proof of correctness:  there is no unstable pair 
-NEED HELP ON THIS 
 
 Direct Proof - 
 
@@ -57,11 +61,11 @@ Direct Proof -
 	
 	a. X accepts him, because she's either single or likes 'A' more than her current man 'B', either way, A-X is a stable pair.
 
-	b. X rejects him, then it's because she prefers her current 
+	b. X rejects him, then it's because she prefers B than A 
 
 
 #### Proof - All Execution of GS yields man-optimal match
-~~~code 
+~~~ code 
 Claiming there is a man optimal match S that 
 Y - A 
 Z - B
@@ -71,7 +75,7 @@ Proof by contradiction -
 
 1. suppose G.S created a non-man optimal match. as in, there is a man 'Y' pairs with valid partner woman 'B' . but its not his best partner. 
 
-~~~code 
+~~~ code 
 this means there is a stable match S* where men Y, Z and women A, B 
 
 Y - B 
@@ -87,7 +91,7 @@ woman B's preference - not known
 
 2. Y is the first person to be rejected, since he prefers A over B , Y was rejected by A. This means lady A prefers her current partner than Y (if she didn't have a partner, she would of accept Y)
 
-~~~code 
+~~~ code 
 woman A's preference - Z > Y
 ~~~
 
@@ -95,7 +99,7 @@ woman A's preference - Z > Y
 
 3. Since Y is the first person to be rejected, that means Z has never been rejected. since Z is paired with A, this means he proposed to A as well.  
 
-~~~code 
+~~~ code 
 man  Z's preference - A > B
 ~~~
 
@@ -109,7 +113,7 @@ This is saying the proposee is worst off than the proposer.
 Each Woman receives the *worst valid partner*
 
 
-~~~code 
+~~~ code 
  Context:
  Preference:
  proposer:  
@@ -117,7 +121,7 @@ Each Woman receives the *worst valid partner*
  Y prefers B > A > C 
  Z prefers A > B > C 
 
- porposee: 
+ proposer: 
  A prefers Y > X > Z 
  B prefers X > Y > Z 
  C prefers X > Y > Z 
@@ -139,7 +143,7 @@ Each Woman receives the *worst valid partner*
 5. Therefore, match S would not happen under G.S algo. contradiction.  
 
 #### Does G.S always produce the same matches?
-Yes, because G.S produces man (porposer) - optimal matches.
+Yes, because G.S produces man (proposer) - optimal matches.
 And man-optimal match are subset of all stable matches
 
 # GRAPHS
@@ -159,13 +163,13 @@ where n is number of nodes. if there is an edge between two nodes, there is a 1 
 so takes O(n^2) space 
 
 ### Adjacency List 
-This is another way to represent a graph. It has a better way to find neighbors of each node. there is a n size list. each item in the list is a linked list of the neighbors that node has. 
+This is another way to represent a graph. It has a better way to find neighbors of each node. there is a n size list. each item in the list is a linked list of the neighbors that node has. so, each item is an edge to its neighbour.
 
 Space is ${theta(m+n)}$ where m is number of edges, and n is number of nodes
 
 say there are 3 nodes, and there are edges {(a,b), (b,c), (a,c)} then the adjacency list is 
 
-~~~code
+~~~ code
 node a:  -> b  > c
 node b:  -> c
 node c: 
@@ -173,9 +177,11 @@ node c:
 
 #### Properties
 
-AL is good for sparse graphs, because there will be fewer linked lists. and we can approximate the space as {O(n)}
+AL. is good for sparse graphs, because there will be fewer linked lists. and we can approximate the space as {O(n)}
 
-(NEED HELP ON THIS) Even if it is very dense, the size of the AL is at most the sum of the degrees of the nodes. 
+checking if there is an edge between two nodes ${u , v}$ takes ${O(degree(u)}$ time 
+
+Even if it is very dense, the size of the AL is at most the sum of the degrees of the nodes. 
 
 ### Tree Properties 
 If ${G} is a undirected graph on ${n} nodes, any two of the following statements imply the third. 
@@ -189,6 +195,8 @@ If ${G} is a undirected graph on ${n} nodes, any two of the following statements
 Explores from start node S. and add layers, one layer at a time.
 
 Each layer ${n}$ is neighbors of layer ${n-1}$ node. 
+
+Another property of BFS tree is that if if there is an edge between nodes ${x,y)$, then ${x, y}$ are either one level apart, or on same level. 
 
 *Theorem* For each ${i}$, ${L_i}$ consists of all nodes at exactly ${i}$ from ${s}$. and there is a path from ${s}$ to ${t}$ ${IFF}$ ${t}$ appears in some layer 
 
@@ -204,14 +212,12 @@ short way to remember this is that if all nodes can be colored such that each ed
 
 If a graph is bipartite, then there cannot be an odd length cycle. 
 
-### Bipartite grah and BFS Tree 
+### Bipartite graph and BFS Tree 
 to check if something is a bipartite graph, you run BFS to generate a BFS tree, then see if you can color each layer distinct color. 
 
 Exactly one of the following holdes:
 1. No edge of G joins two nodes of the same layer, then G is bipartite
 2. an edge of G joins two nodes of the same layer, and G has odd-length cycle, so not bipartite
-
-(But dont BFS tree hide edges that are not discovered?)
 
 ## Directed Graphs
 ### Terminologies
@@ -243,7 +249,7 @@ hence contradiction
 ### Topological Sort Given a DAG 
 - the Topological Sort is just a DFS with an extra temporary stack.
 
-~~~code 
+~~~ code 
 Version 1 From GeeksForGeeks
 instantiate a temp. stack 
 
@@ -262,4 +268,19 @@ Find a node v with no incoming edge and order it first
 	Recursively Compute a topological ordering of G - {v}
 		append this order after v
 ~~~
+
+## Shortest Path Problems
+
+### Dijkstra's Algorithm (DA)
+Greedy algorithm takes the best best choice with information available. and does not adjust it even if theres new information. Dijkstra's algo is greedy because it has an initial set S of shortest path, and every round, it adds to it given the info. at the time, but does not remove from S.
+
+This algorithm maintains the invariant that 
+
+for each node in S, d(u) is the length of the shortest path from root to u
+
+*Proof Of Correctness*
+
+### Efficient Implementation of DA
+1. Use a Min Priority Queue to the nodes not in S , organize by their distance. 
+2. explicity maintain each unexplore node's distance instead of computing the formula. 
 
