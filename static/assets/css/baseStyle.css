@@ -51,7 +51,9 @@ body{
   display:block;
   clear: both;
   position:fixed;
-  bottom:30px;
+  bottom:0px;
+  background-color: white;
+  width:100%;
 }
 .site-footer p {
   padding-top: 14px;
