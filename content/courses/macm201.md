@@ -7,36 +7,34 @@ code: "MACM 201"
 
 
 ### Find unique solution to a given recurrence
-Given \$$ a_{n+1} - 1.5a_n = 0$$
+Given $$ a_{n+1} - 1.5a_n = 0$$
 
-Rearrange equation so \$$ a_{n+1} = 1.5a_n$$
+Rearrange equation so $$ a_{n+1} = 1.5a_n$$
 
-then we can see that \$$ a_{n+2} = 1.5a_{n+1} = 1.5 * 1.5 * a_{n}$$
+then we can see that $$ a_{n+2} = 1.5a_{n+1} = 1.5 * 1.5 * a_{n}$$
 
-so the unique solution is \$$ a_{n} = 1.5^n * a_0 $$
+so the unique solution is $$ a_{n} = 1.5^n * a_0 $$
 
 ### Solve a recurrence using characteristic polynomial
-Given an equation such as \$$ a_n = 2a_{n-1} + 3a_{n} \quad a_0 = 1 \quad a_1 = 2 $$
+Given an equation such as $$ a_n = 2a_{n-1} + 3a_{n} \quad a_0 = 1 \quad a_1 = 2 $$
 
-Substitute \$$ a_n = cr^n $$
+Substitute $$ a_n = cr^n $$
 
-so the equation becomes \$$ cr^n = 2cr^{n-1} + 3cr^{n-2} $$
+so the equation becomes $$ cr^n = 2cr^{n-1} + 3cr^{n-2} $$
 
-the key part is to divide both sides by \$$ cr^{n - lowest exponent} $$ 
+the key part is to divide both sides by $$ cr^{n - lowest exponent} $$ 
 
-in this case its 2, it becomes \$$ r^2 - 2r - 3 = 0 $$ 
+in this case its 2, it becomes $$ r^2 - 2r - 3 = 0 $$ 
 
-move terms to one side rearrange and find the root \$$ (r+1)(r-3) = 0 $$
+move terms to one side rearrange and find the root $$ (r+1)(r-3) = 0 $$
 
-with r = -1 and r = 3, general equation for second order homogenous solution is \$$ a_n=A3^n+B(-1)^n $$
+with r = -1 and r = 3, general equation for second order homogenous solution is $$ a_n=A3^n+B(-1)^n $$
 
-solve for A and B by using initial information \$$ a_1 = 1 \quad a_0 = 0 $$ 
+solve for A and B by using initial information $$ a_1 = 1 \quad a_0 = 0 $$ 
 
-we get 
-$$ A = 3/4 \quad B=1/4 $$
+we get $$ A = 3/4 \quad B=1/4 $$
 
-The solution is thus 
-$$ a_n = 3/4*3^n + 1/4*(-1)^{n} $$
+The solution is thus $$ a_n = 3/4*3^n + 1/4*(-1)^n $$
 
 ### Table of reference for particular solutions in recurrence 
 g(n) of $$ n^t $$ is $$\quad A_on^t + A_1n^{t-1} + A_2n^{t-2} + ... + A_0 $$
@@ -47,13 +45,13 @@ g(n) of $$ n^tr^n $$ is $$\quad r^n(A_tn^t + A_{t-1}n^{t-1} + A_{t-2}n^{t-2} + .
 
 ### Solve a nonhomogenous equation
 1. Determine the recurrence solution, like 
-\$$ a_n = 3a_{n-1} + 3^{n-1} $$
+$$ a_n = 3a_{n-1} + 3^{n-1} $$
 2. find the general solution for the homogenous portion 
-\$$ a_n^h = Ar_1^n + Br_2^n $$ where A B are constants that solves the equation.
+$$ a_n^h = Ar_1^n + Br_2^n $$ where A B are constants that solves the equation.
 3. Find the particular solution $$ a_n^p $$ using textbook table, note if found to be symmetric with $$ a_n^h $$ you need to introduce a $$ n $$ to break the symmetry. 
-\$$ a_n^p = C2^n + Dn^23^n $$ where C D are constants to solve for the particular solution 
+$$ a_n^p = C2^n + Dn^23^n $$ where C D are constants to solve for the particular solution 
 4. the solution is now in the form of 
-\$$ a_n = a_n^h + a_n^p = Ar_1^n + Br_2^n + C2^n + Dn^2(3^n) $$ 
+$$ a_n = a_n^h + a_n^p = Ar_1^n + Br_2^n + C2^n + Dn^2(3^n) $$ 
 5. Use coefficient comparision to solve for C and D in $$ a_n^p $$ by plugging $$ a_n^p $$ into the recurrence soluation at 1.
 6. Once we found C, D , we can solve for A, B by setting up 4. $$ a_n $$ with the values from 5. 
 
@@ -108,14 +106,14 @@ finding a hamilton path is NP complete, meaning there is no known algorithm that
 - *Sufficient But not Necessary* Boiling a potato is *sufficient* for cooking a potato, but not *necessary*, because its not the only way to cook, you could fry, roast, etc.
 
 #### Sufficient Condition 1 for Identifying Hamilton Path / Cycle
-/$$ for all vertices x, y/, with |V| >=2 x != y /, deg(x) + deg(y) >= n-1$$ 
+for all vertices x, y $$ with |V| >=2 x != y /, deg(x) + deg(y) >= n-1$$ 
 and
-/$$ for all vertices x, y/, with |V| >=3 x != y /, deg(x) + deg(y) >= n$$ 
+for all vertices x, y $$ with |V| >=3 x != y /, deg(x) + deg(y) >= n$$ 
 
 This is a sufficient condition for a graph to admit a Hamilton cycle. 
 
 #### Sufficient Condition 2 for Identifying Hamilton Path / Cycle
-/$$ for all vertices x /, deg(x) >= (n-1)/2$$ 
+for all vertices x $$ deg(x) >= (n-1)/2$$ 
 This is another sufficient condition for having a HP
 
 #### Necessary Condition for Identifying Hamilton *Cycle* in Bipartite Graph
@@ -167,7 +165,7 @@ Kuratowsk Theorem says a graph is a planar IFF if it does not contain a subgraph
 Faces are regions in a *planar* graph. we can think of faces as regions closed off by a cycle within the graph. note not every cycle of G forms a face
 
 ##### Euler Formula
-states \$$ faces = 2 + edges - vertices $$
+states $$ faces = 2 + edges - vertices $$
 
 ### Hypercube
 two binary sequences of w and w' have distance 1 if they differ in a single position. 
