@@ -1,15 +1,18 @@
 import sys
 from flask import Flask, render_template, send_file
-from flask_flatpages import FlatPages
+from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
 from configparser import ConfigParser
 from fabric.api import local
+# from pygments import pygments_style_defs
+# import pygments
 
 DEBUG = True 
 BASE_URL = 'https://andy-yao.com'
 FLATPAGES_AUTO_RELOAD = DEBUG 
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'content'
+
 POST_DIR = 'posts'
 COURSES_DIR = 'courses'
 
@@ -19,6 +22,7 @@ app.config.from_object(__name__)
 freezer = Freezer(app)
 config = ConfigParser()
 config.read('private/config.ini')
+
 
 @app.route("/")
 def index():
@@ -52,6 +56,12 @@ def course(name):
 @app.route("/cv.pdf")
 def cv():
     return send_file('static/assets/cv.pdf')
+
+'''
+@app.route('/pygments.css')
+def pygments_css():
+    return pygments_style_defs('tango'), 200, {'Content-Type': 'text/css'}
+'''
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":

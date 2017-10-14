@@ -29,7 +29,7 @@ Pertains to the ISA relation.
 
 - The purpose of a DB is to faciliate access/ storing data. key things to note is to protect data from concurrent users, crash recoveries, etc. 
 
--a schema is a way to describe data
+- a schema is a way to describe data
 
 ### SQL
 - we have DDL, data definition language, which are the CREATE, DROP, DELETE, keywords
@@ -43,57 +43,51 @@ Pertains to the ISA relation.
 - Isolation - Concurrency control to allow multi user
 - Durability - the database must not be corruptible and lose information
 
-~~~ sql
-	
+For example 
+
+	:::sql
 	INSERT INTO tableName(a, b, c, d)
 	VALUES (1,2,3,4)
-
 	CREATE VIEW ViewName 
 	(SELECT ...)
-
 	DROP VIEW
-
 	LIKE (case insensitive)
-
 	UNION - joins two select queries, note fields have to be the same
-
 	INTERSECT - 
-
 	EXCEPT
-~~~
+
 
 Relational Algebra's Set division can be translated to SQL like so
 
 e.g.  Find sailors who’ve reserved all boats
-~~~ sql
-SELECT  S.sname
-FROM  Sailors S
-WHERE  NOT EXISTS 
+
+	:::sql
+	SELECT  S.sname
+	FROM  Sailors S
+	WHERE  NOT EXISTS 
 	    ((SELECT  B.bid
 	      FROM  Boats B)
 	        EXCEPT
 	            (SELECT  R.bid
 	               FROM  Reserves R
 	               WHERE  R.sid=S.sid))
-~~~
+
 
 Find Entity that have only 1 attribute
 e.g. Find the snames of suppliers who supply only red parts.
 
-~~~ sql
+	:::sql
 	Select S.sid from Suppliers S
 	where ‘Red’ = ALL (select Parts.color 
 			from Catalog, Parts
 			where Catalog.sid = S.sid and Parts.pid = Catalog.pid )
-~~~
 
-a = Any {a,3} 	True
+and 
 
-a  = All  {a,3} 	False
-
-a = Any 	{}	False
-
-a = All	{}	True
+	a = Any {a,3} 	True
+	a = All {a,3} 	False
+	a = Any {}		False
+	a = All	{}		True
 
 ## Exam 2 Prep Notes
 
@@ -121,31 +115,31 @@ Rule For Null:
 therefore, a selection returns only these tuples that makes the condition in the WHERE clause TRUE, those with unknown or false do not qualify. 
 As part of 3 value logic (Ture False Unknown)
 
-TRUE AND UNKNOWN = UNKNOWN
+	TRUE AND UNKNOWN = UNKNOWN
+	FALSE AND UNKNOWN = FALSE
+	FALSE OR UNKNOWN = UNKNOWN
+	NOT UNKNOWN = UNKNOWN
 
-FALSE AND UNKNOWN = FALSE
+as well, 
 
-FALSE OR UNKNOWN = UNKNOWN
+	:::sql
+	SELECT * 
+	FROM t1
+	WHERE col_1 > 5
+	OR col_1 < 5
+	OR col_1 = 5
 
-NOT UNKNOWN = UNKNOWN
 
-~~~ sql
-SELECT * 
-FROM t1
-WHERE col_1 > 5
-OR col_1 < 5
-OR col_1 = 5
-~~~
 Any record where col_1 has NULL will not be returned in the above query
 
 ### Outer Joins
 SQL outer joins include NULL values
 
-~~~ sql
-SELECT *
-FROM a LEFT OUTER JOIN b
-ON a.id = b.id
-~~~
+	:::sql
+	SELECT *
+	FROM a LEFT OUTER JOIN b
+	ON a.id = b.id
+
 LEFT OUTER JOIN would show dangling tuples from left input table. (null is filled for all attribute of right input)
 
 RIGHT OUTER JOIN does the same but from right table's perspective
@@ -154,17 +148,16 @@ FULL OUTER JOIN shows dangling tuples from both input table
 
 ### Security 
 
-~~~ sql
--- ex1
-GRANT SELECT, INSERT, DELETE 
-ON Reserves 
-TO Yuppy 
-WITH GRANT OPTION
+	:::sql
+	-- ex1
+	GRANT SELECT, INSERT, DELETE 
+	ON Reserves 
+	TO Yuppy 
+	WITH GRANT OPTION
+	-- ex2
+	GRANT UPDATE(rating) ON Sailors TO
+	Leah
 
--- ex2
-GRANT UPDATE(rating) ON Sailors TO
-Leah
-~~~
 user yuppy can now select, insert, and delete, and also grant other people these privileges. 
 
 user leah can now update ratings, but can't gran this privilege to other. 
@@ -178,28 +171,30 @@ View is a relation that is stored for use later.
 Types of IC include:
 - Domain Constraint (field values must be right type, always enforced)
 - Attribute based CHECK (defined in declaration of an attribute, activate on insertion)
-~~~ sql
-CREATE TABLE ..
-... CHECK (col_1 >= 1 AND col_2 <= 30)
 
--- can also name the check 
-CREATE TABLE ...
-CONSTRAINT noFoo
-CHECK('Foo' <> ANY(SELECT ...))
-~~~
+	:::sql
+	CREATE TABLE ..
+	... CHECK (col_1 >= 1 AND col_2 <= 30)
+	# can also name the check 
+	CREATE TABLE ...
+	CONSTRAINT noFoo
+	CHECK('Foo' <> ANY(SELECT ...))
+
 	
 - Tuple-Based Check (defined in declaration of table, activate on insertion to corrosponding table or update of tuple) 
-~~~ sql
-CREATE TABLE ...
-... CHECK(colA >= colB)
-~~~
+
+		:::sql
+		CREATE TABLE ...
+		... CHECK(colA >= colB)
+
 - Assertion: (defined independently from any table, activate on any modification of any table mentioned in assertion)
-~~~sql
-CREATE ASSERTION notTooManyReservations
-CHECK (10 > ALL (SELECT COUNT(*)
-				FROM Reserves
-				GROUP BY sid))
-~~~
+
+		:::sql
+		CREATE ASSERTION notTooManyReservations
+		CHECK (10 > ALL (SELECT COUNT(*)
+						FROM Reserves
+						GROUP BY sid))
+
 Checks and Assertions are not well supported in SQL.
 
 Check is not in SQL SERVER
@@ -208,29 +203,28 @@ Assertion is not supported in postgresSQL
 
 ### Triggers
 procedures that starts automatically if specificed change occurs in the DBMS.
-
 has 
 - Event (activates the trigger)
 - Condition (tests whether trigger should run)
 - Action
 
-~~~ sql
-CREATE TRIGGER youngSailorUpdate
-    AFTER INSERT ON SAILORS			/* Event */
-    REFERENCING NEW TABLE NewSailors	
-    FOR EACH STATEMENT
-	   INSERT					/* Action */
-		INTO YoungSailors(sid, name, age, rating)
-		SELECT sid, name, age, rating
-		FROM NewSailors N
-		WHERE N.age <= 18;
--- Referencing include
-NEW TABLE
-OLD TABLE
-OLD ROW
-NEW ROW
---- Use begin and end to include multiple SQL Statements
-~~~
+	:::sql
+	CREATE TRIGGER youngSailorUpdate
+	    AFTER INSERT ON SAILORS			/* Event */
+	    REFERENCING NEW TABLE NewSailors	
+	    FOR EACH STATEMENT
+		   INSERT					/* Action */
+			INTO YoungSailors(sid, name, age, rating)
+			SELECT sid, name, age, rating
+			FROM NewSailors N
+			WHERE N.age <= 18;
+	-- Referencing include
+	NEW TABLE
+	OLD TABLE
+	OLD ROW
+	NEW ROW
+	--- Use begin and end to include multiple SQL Statements
+
 the above inserts young sailors into separate table. 
 
 ### Trigger Vs General Constraints
@@ -265,29 +259,29 @@ written in general purpose programming language (Persistent stored modules PSM),
 #### Impedance Mismatch
 Since SQL is a declarative language while C and other language are procedural. there is different approach as to how data is handle, leading to unnecessary effort. Problem is trying to fit object oriented program into relational database. 
 
-~~~sql
--- Sample create procedure
-CREATE FUNCTION rateSailor (@sailorId INT)
-   RETURNS INT
-AS
-BEGIN
-   DECLARE @numRes INT
-   DECLARE @rating INT
-	SET @numRes = (SELECT COUNT(*)
-                           FROM Reserves R
-                       WHERE R.sid = @sailorId)
-   IF @numRes > 10 
-       SET @rating = 1
-   ELSE
-       SET @rating = 0
-   RETURN @rating
-END
-GO;
-SELECT dbo.rateSailor(22); go
+	:::sql
+	-- Sample create procedure
+	CREATE FUNCTION rateSailor (@sailorId INT)
+	  RETURNS INT
+	AS
+	BEGIN
+	DECLARE @numRes INT
+	DECLARE @rating INT
+		SET @numRes = (SELECT COUNT(*)
+	                   FROM Reserves R
+	                   WHERE R.sid = @sailorId)
+	IF @numRes > 10 
+	   SET @rating = 1
+	ELSE
+	   SET @rating = 0
+	RETURN @rating
+	END
+	GO;
+	SELECT dbo.rateSailor(22); go
+	-- Can call a function
+	EXEC SQL CALL functionName(@sid, @rating) 
 
--- Can call a function
-EXEC SQL CALL functionName(@sid, @rating) 
-~~~
+
 
 ### Advantage of Stored Procedure 
 - encapsulates application logic while staying close to the data.
@@ -392,32 +386,25 @@ there can be zero or more attribute to every element.
 ### XPath ###
 is a query language for describing XML, uses tags to traverse through XML tree , and return series of qualifying items. 
 
-~~~xml 
-path expression starts with '/'
-/tag1/tag2 return 
-this returns the set of tags that has /tag1/tag2 
+	:::xml 
+	path expression starts with '/'
+	/tag1/tag2 return 
+	this returns the set of tags that has /tag1/tag2 
+	attributes - use @id to filter by tag id 
+	<bib>
+		<book bookID = 'b100'></book>
+	</bib>
+	/bib/book/@bookID 
+	returns sequence 'b100'...
+	/bib/*[publisher = 'McGraw']
+	returns tags that have values Mcgraw
+	use * to indicate wildcard
+	// is for descendants. 
+	note, /bib/*/title and /bib//title is the same 
+	/bib/*[publisher = 'McGraw']
+	/bib/book[2]/author[1] second paper, first author. 
+	/bib/(paper | book) find title of each element that is a paper or a book. 
 
-attributes - use @id to filter by tag id 
-<bib>
-<book bookID = 'b100'></book>
-</bib>
-
-/bib/book/@bookID 
-returns sequence 'b100'...
-
-/bib/*[publisher = 'McGraw']
-returns tags that have values Mcgraw
-
-use * to indicate wildcard
-// is for descendants. 
-
-
-note, /bib/*/title and /bib//title is the same 
-
-/bib/*[publisher = 'McGraw']
-/bib/book[2]/author[1] second paper, first author. 
-/bib/(paper | book) find title of each element that is a paper or a book. 
-~~~
 
 Exam 3 Prep
 
@@ -509,20 +496,19 @@ While alternative 3 is more compact than 2, it is variable sized data entries (d
 
 (to build a clustered index, you would need to sort the heap file and also keep index sorted)
 
-~~~sql
---Alternative 2 looks like 
-color, location
-red, 1
-red, 3
-red, 2
-blue,6
-blue, 4
-blue, 5
+	:::sql
+	--Alternative 2 looks like 
+	color, location
+	red, 1
+	red, 3
+	red, 2
+	blue,6
+	blue, 4
+	blue, 5
+	--Alternative 3 looks like
+	red 1,2,3
+	blue 4,5,6
 
---Alternative 3 looks like
-red 1,2,3
-blue 4,5,6
-~~~
 
 #### Hash Base Index
 Used for equality search. index is a collection of buckets, and buckets are primary page plus zero or more overflow page. 
@@ -548,7 +534,6 @@ Assumes 67% page occupancy
 the conjuncts that the index matches as the primary conjuncts in the selection. 
 
 hash index matches a selection condition containing no disjunctions if there is a term of the form *attribute = value * for each attribute in the index search key 
-
 tree index matches a selection condition containing no disjunctions if there is a term of the form attribute *op* value for each attribute in a prefix of the index's search key. 
 
 
@@ -562,18 +547,15 @@ key features,
 2. Consider only plans with binary joins which the inner relation is base. 
 5. Model of costs that accounts fo CPU cost as well as I/o Cost 
 
+		:::sql
+		SELECT s.sname
+		FROM Reserves R, Sailors S 
+		WHERE R.sid = S.sid 
+		AND R.bid = 100 AND S.rating > 5
 
-~~~sql
-SELECT s.sname
-FROM Reserves R, Sailors S 
-WHERE R.sid = S.sid 
-AND R.bid = 100 AND S.rating > 5
-~~~
 
 the above can be broken in the form of RA expression tree.
 can be broken down in 
-[insert link for _images/RA_ExpressionTree.png]
-
 
 To obtain the evaluation plan, we need to implement each relational algebra operation. for example, a JOIN between Reserve and Sailor is a page oriented simple nested loop. The projection and selection commands are 'on the fly' generated. 
 
