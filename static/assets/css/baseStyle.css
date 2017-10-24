@@ -7,6 +7,7 @@ body{
     color: #333334;
 }
 
+
 .container{
     width:900px;
     margin: 0 auto;
@@ -16,6 +17,7 @@ body{
 .main-section{
     width:520px;
     float:right;
+    margin: 10px;
 }
 
 .sidebar{
@@ -79,8 +81,9 @@ blockquote {
         width:100%;
         margin-bottom:20px;
         float:none;
-        text-align: center;
+        text-align: left;
         position: relative;
+        margin: 10px;
     }
 
 }
