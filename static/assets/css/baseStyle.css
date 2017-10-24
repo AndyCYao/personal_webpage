@@ -77,13 +77,24 @@ blockquote {
         width:100%;
     }
 
-    .main-section, .sidebar{
+    .main-section{
         width:100%;
         margin-bottom:20px;
         float:none;
         text-align: left;
         position: relative;
         margin: 10px;
+    }
+
+    .sidebar{
+        width:100%;
+        text-align: left;
+        position: relative;
+    }
+
+    .sidebar ul a{
+        text-align: left;
+        display: float;
     }
 
 }

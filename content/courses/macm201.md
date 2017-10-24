@@ -7,9 +7,9 @@ code: "MACM 201"
 
 
 ### Find unique solution to a given recurrence
-Given $$ a_{n+1} - 1.5a_n = 0$$
+Given \\(a_{n+1} - 1.5a_n = 0\\)
 
-Rearrange equation so $$ a_{n+1} = 1.5a_n$$
+Rearrange equation so \\(a_{n+1} = 1.5a_n\\)
 
 then we can see that $$ a_{n+2} = 1.5a_{n+1} = 1.5 * 1.5 * a_{n}$$
 
@@ -22,7 +22,7 @@ Substitute $$ a_n = cr^n $$
 
 so the equation becomes $$ cr^n = 2cr^{n-1} + 3cr^{n-2} $$
 
-the key part is to divide both sides by $$ cr^{n - lowest exponent} $$ 
+the key part is to divide both sides by $$ cr^{n - lowest\,exponent} $$ 
 
 in this case its 2, it becomes $$ r^2 - 2r - 3 = 0 $$ 
 
@@ -34,14 +34,14 @@ solve for A and B by using initial information $$ a_1 = 1 \quad a_0 = 0 $$
 
 we get $$ A = 3/4 \quad B=1/4 $$
 
-The solution is thus $$ a_n = 3/4*3^n + 1/4*(-1)^n $$
+The solution is thus \\(a_n = 3/4*3^n + 1/4*{(-1)^n}\\)
 
 ### Table of reference for particular solutions in recurrence 
-g(n) of $$ n^t $$ is $$\quad A_on^t + A_1n^{t-1} + A_2n^{t-2} + ... + A_0 $$
+g(n) of \\(n^t \\) is $$\quad A_on^t + A_1n^{t-1} + A_2n^{t-2} + ... + A_0 $$
 
-g(n) of $$ r^n $$ is $$\quad Ar^n $$
+g(n) of \\(r^n\\) is \\(\quad Ar^n\\)
 
-g(n) of $$ n^tr^n $$ is $$\quad r^n(A_tn^t + A_{t-1}n^{t-1} + A_{t-2}n^{t-2} + ... + A_1n^1 + A_0) $$
+g(n) of \\(n^tr^n\\) is $$\quad r^n(A_tn^t + A_{t-1}n^{t-1} + A_{t-2}n^{t-2} + ... + A_1n^1 + A_0) $$
 
 ### Solve a nonhomogenous equation
 1. Determine the recurrence solution, like 
@@ -67,10 +67,14 @@ $$ (-1)^r(n+r-1, r) $$
 Coefficient extraction is used to solve recurrence relations, and find combinatoric sums , amongsts other things.
 
 There are several rules we can follow 
-1. Sum Rule $$ [x^n](A(x)+B(x)) = ([x^n]A(x) + [x^n]B(x)) $$ (We can think of this like two mutually exclusive series, so we need to use sum rule to count them)
-2. Power Rule $$ [x^n](A(kx) = k^n([x^n]A(X)) $$
-3. Reduction Rule $$ [x^n](kx^mA(X)) = k[x^{n-m}A(x)] $$ (This is because we can think $$ x^m $$ is a shift of terms to the series, so we can find the correct coefficient by offset)
-4. Product Rule $$ [x^n](A(x) * B(x)) = [x^k]A(x) * [x^{k-1}]B(x $$)
+
+1. Sum Rule \\({x^n}(A(x)+B(x)) = ([x^n]A(x) + [x^n]B(x))\\) (We can think of this like two mutually exclusive series, so we need to use sum rule to count them)
+
+2. Power Rule \\(x^n(A(kx) = k^n([x^n]A(X)\\)
+
+3. Reduction Rule \\({x^n}(kx^mA(X)) = k[x^{n-m}A(x)]\\) (This is because we can think \\(x^m\\) is a shift of terms to the series, so we can find the correct coefficient by offset)
+
+4. Product Rule \\({x^n}(A(x) * B(x)) = [x^k]A(x) * [x^{k-1}]B(x)\\)
 
 ### What is a graph
 graph is a collection of vertices, V, and edges E. 
