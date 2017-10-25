@@ -65,43 +65,43 @@ Direct Proof -
 
 
 #### Proof - All Execution of GS yields man-optimal match
-~~~ code 
-Claiming there is a man optimal match S that 
-Y - A 
-Z - B
-~~~
-
-Proof by contradiction -
+	:::code 
+	Claiming there is a man optimal match S that 
+	Y - A 
+	Z - B
+		
+		
+	Proof by contradiction -
 
 1. suppose G.S created a non-man optimal match. as in, there is a man 'Y' pairs with valid partner woman 'B' . but its not his best partner. 
 
-~~~ code 
-this means there is a stable match S* where men Y, Z and women A, B 
+	:::code 
+	this means there is a stable match S* where men Y, Z and women A, B 
 
-Y - B 
-Z - A 
+	Y - B 
+	Z - A 
 
-and 
+	and 
 
-man Y's   preference - A > B
-man Z's   preference - not known
-woman A's preference - not known 
-woman B's preference - not known
-~~~
+	man Y's   preference - A > B
+	man Z's   preference - not known
+	woman A's preference - not known 
+	woman B's preference - not known
+
 
 2. Y is the first person to be rejected, since he prefers A over B , Y was rejected by A. This means lady A prefers her current partner than Y (if she didn't have a partner, she would of accept Y)
 
-~~~ code 
-woman A's preference - Z > Y
-~~~
+	:::code 
+	woman A's preference - Z > Y
+
 
 2. Y is rejected by A, so he propose to the next woman on his list, B, and is accepted
 
 3. Since Y is the first person to be rejected, that means Z has never been rejected. since Z is paired with A, this means he proposed to A as well.  
 
-~~~ code 
-man  Z's preference - A > B
-~~~
+	:::code 
+	man  Z's preference - A > B
+
 
 4. Here is the problem, Z would not have propose to B. Z is paired off with A before reaching B. thus S is not possible. and not a stable match.  
 
@@ -111,27 +111,26 @@ man Y matches with woman A
 This is saying the proposee is worst off than the proposer.
 
 Each Woman receives the *worst valid partner*
+	
+	:::code 
+	 Context:
+	 Preference:
+	 proposer:  
+	 X prefers A > B > C 
+	 Y prefers B > A > C 
+	 Z prefers A > B > C 
 
+	 proposer: 
+	 A prefers Y > X > Z 
+	 B prefers X > Y > Z 
+	 C prefers X > Y > Z 
 
-~~~ code 
- Context:
- Preference:
- proposer:  
- X prefers A > B > C 
- Y prefers B > A > C 
- Z prefers A > B > C 
+	 stable match S* (produce by G.S)
+	 {X-A, Y-B. Z-C}
 
- proposer: 
- A prefers Y > X > Z 
- B prefers X > Y > Z 
- C prefers X > Y > Z 
+	 stable match S 
+	 {X-B, Y-A, Z-C}
 
- stable match S* (produce by G.S)
- {X-A, Y-B. Z-C}
-
- stable match S 
- {X-B, Y-A, Z-C}
-~~~
 
 *Proof By Contradiction* - suppose GS generates match S, rather than match S*
 
@@ -157,53 +156,53 @@ Cycle 		- Same as Simple path, but start and end at the same node
 
 ### Adjacency Matrix
 
-Graphs can be represented by a ${n x n}$ adjacency matrix
+Graphs can be represented by a \\(n x n\\) adjacency matrix
 where n is number of nodes. if there is an edge between two nodes, there is a 1 on the matrix. otherwise 0.
 
-so takes O(n^2) space 
+so takes \\(O(n^2)\\) space 
 
 ### Adjacency List 
 This is another way to represent a graph. It has a better way to find neighbors of each node. there is a n size list. each item in the list is a linked list of the neighbors that node has. so, each item is an edge to its neighbour.
 
-Space is ${theta(m+n)}$ where m is number of edges, and n is number of nodes
+Space is \\(theta(m+n)\\) where m is number of edges, and n is number of nodes
 
 say there are 3 nodes, and there are edges {(a,b), (b,c), (a,c)} then the adjacency list is 
 
-~~~ code
-node a:  -> b  > c
-node b:  -> c
-node c: 
-~~~
+	:::code
+	node a:  -> b  > c
+	node b:  -> c
+	node c: 
+
 
 #### Properties
 
 AL. is good for sparse graphs, because there will be fewer linked lists. and we can approximate the space as {O(n)}
 
-checking if there is an edge between two nodes ${u , v}$ takes ${O(degree(u)}$ time 
+checking if there is an edge between two nodes \\(u , v\\) takes \\(O(degree(u))\\) time 
 
 Even if it is very dense, the size of the AL is at most the sum of the degrees of the nodes. 
 
 ### Tree Properties 
-If ${G} is a undirected graph on ${n} nodes, any two of the following statements imply the third. 
+If \\(G)\\) is a undirected graph on \\(n)\\) nodes, any two of the following statements imply the third. 
 
 - G is connected
 - G does not contain a cycle 
-- G has ${n - 1} edges
+- G has \\(n - 1\\) edges
 
 ## Breadth First Search 
 
 Explores from start node S. and add layers, one layer at a time.
 
-Each layer ${n}$ is neighbors of layer ${n-1}$ node. 
+Each layer \\(n\\) is neighbors of layer \\(n-1\\) node. 
 
-Another property of BFS tree is that if if there is an edge between nodes ${x,y)$, then ${x, y}$ are either one level apart, or on same level. 
+Another property of BFS tree is that if there is an edge between nodes \\((x,y)\\), then \\(x, y\\) are either one level apart, or on same level. 
 
-*Theorem* For each ${i}$, ${L_i}$ consists of all nodes at exactly ${i}$ from ${s}$. and there is a path from ${s}$ to ${t}$ ${IFF}$ ${t}$ appears in some layer 
+*Theorem* For each \\(i\\), \\(L_i\\) consists of all nodes at exactly \\(i\\) from \\(s\\). and there is a path from \\(s\\) to \\(t\\) \\(IFF\\) \\(t\\) appears in some layer 
 
-*Theorem* BFS runs in ${O(m+n)}$ time , if in adjacency list 
+*Theorem* BFS runs in \\(O(m+n)\\) time , if in adjacency list 
 
-- In Adjacency lists, there are ${m}$ nodes and ${n}$ edges representing the node's neighbours.
-- when we consider node ${u}$, there are degree(u) incident edges (u,v)
+- In Adjacency lists, there are \\(m\\) nodes and \\(n\\) edges representing the node's neighbours.
+- when we consider node \\(u\\), there are degree(u) incident edges (u,v)
 - total time processing edges is sum of of all degress = 2 * number of edges
 
 
@@ -219,15 +218,15 @@ Exactly one of the following holdes:
 1. No edge of G joins two nodes of the same layer, then G is bipartite
 2. an edge of G joins two nodes of the same layer, and G has odd-length cycle, so not bipartite
 
-## Directed Graphs
+### Directed Graphs
 ### Terminologies
-Mutually Reachable - if there is a directed path from node ${u} to ${v} and vice versa 
+Mutually Reachable - if there is a directed path from node \\(u\\) to \\(v\\) and vice versa 
 Strongly Connected - if every pair of nodes is mutually reachable, then the graph is *Strongly Connected*
 Strong Component - maximal subset of mutually reachable nodes. (cannot add more nodes without breaking 'strong connectness')
 Directed Acyclic Graph - a directed graph that contains no directed cycles. 
-Topological order 	   - is an ordering of its nodes ${v1, v2, .. vn}$ so that every edge ${(v_i,v_j)}$ we have ${i < j}$
+Topological order 	   - is an ordering of its nodes \\(v1, v2, .. vn\\) so that every edge \\((v_i,v_j)\\) we have \\(i < j\\)
 
-*Theorem* - Can see if ${G} is strongly connected in ${O(m+n)} time
+*Theorem* - Can see if \\(G\\) is strongly connected in \\(O(m+n)\\) time
 
 1. Pick any node s 
 2. Run BFS from s in G 
@@ -240,16 +239,16 @@ Topological order 	   - is an ordering of its nodes ${v1, v2, .. vn}$ so that ev
 Proof by Contradiction. 
 
 1. Suppose G is not a DAG , then this means there exists a directed cycle
-2. let ${v_x}$ be the vertex with the lowest index in the cycle 
-so ${v_x...v_{x+1}.. v_{x+2}... v_{j} ... and ... v_x$
+2. let \\(v_x\\) be the vertex with the lowest index in the cycle 
+so \\(v_x...v_{x+1}.. v_{x+2}... v_{j} ... and ... v_x\\)
 
-3. for ${v_j}$ to go to ${v_x}$, ${j < x}$ , per topological order but ${j > x}$
+3. for \\(v_j\\) to go to \\(v_x\\), \\(j < x\\) , per topological order but \\(j > x\\)
 hence contradiction
 
 ### Topological Sort Given a DAG 
 - the Topological Sort is just a DFS with an extra temporary stack.
 
-~~~ code 
+::: code 
 Version 1 From GeeksForGeeks
 instantiate a temp. stack 
 
@@ -267,7 +266,6 @@ Find a node v with no incoming edge and order it first
 'Delete' v from graph G 
 	Recursively Compute a topological ordering of G - {v}
 		append this order after v
-~~~
 
 ## Shortest Path Problems
 
@@ -283,4 +281,70 @@ for each node in S, d(u) is the length of the shortest path from root to u
 ### Efficient Implementation of DA
 1. Use a Min Priority Queue to the nodes not in S , organize by their distance. 
 2. explicity maintain each unexplore node's distance instead of computing the formula. 
+
+Priority queue can be used to improve Prim's algorithm as well , by sorting the lowest cost edges 
+
+### Recurrence Equation Time Complexity Refresher
+
+Recurrence	Algorithm	Big-Oh Solution
+\\(T(n) = T(n/2) + O(1)\\)	Binary Search	\\(O(log n)\\)
+
+\\(T(n) = T(n-1) + O(1)\\)	Sequential Search	\\(O(n)\\)
+
+\\(T(n) = 2 T(n/2) + O(1)\\)	tree traversal	\\(O(n)\\)
+
+\\(T(n) = T(n-1) + O(n)\\)	Selection Sort (other n2 sorts)	\\(O(n2)\\)
+
+\\(T(n) = 2 T(n/2) + O(n)\\)	Mergesort (average case Quicksort)	\\(O(n log n)\\)
+
+### Cycle Property 
+The edge with the heaviest weight would not be selected for the minimum spanning tree 
+
+*intuition* you can connect to all the nodes in the cycle and not use this edge.  	
+
+### Cut Property
+The edge with the minimum weight in a cycle would be selected first 
+
+*intution* imagine the minimum weight edge \\(e_m\\) and some other edge in the cycle connects nodes from two components \\(S \, T\\) 
+then \\(e_m\\) would be the one used to connect the two component. 
+
+### Greedy Algorithm - General ways to prove them 
+the algorithm always maintains the invariant of 
+
+\\(S_i\\) is subset of \\(S_{opt}\\) for all iterations of \\(i\\)
+
+
+### General way to prove Kruskal and Prim algorithm 
+we can use the cycle and cut property to prove these two algorithm, and also the greedy algo algo. invariant 
+
+### Union Find Algo
+
+## Greedy Algorithm Interval Scheduling
+### Greedy Algorithm Template
+1. Organize the jobs in some order, like Heaviest First, Earliest First, Shortest first, etc. note a priori its hard to tell 
+which one makes sense 
+2. Iterate through this list, and accept answer as it goes. 
+
+### Minimizing lateness 
+Use Earliest Deadline First 
+\\(O(nlogn)\\) time for sorting
+
+* Earliest Deadline first (EDF) has no idle time 
+* EDF Has no inversions 
+* If a schedule  (with no idle time) has an inversion, it has one with pair of inverted job scheduled consecutively
+
+### Proof - swapping two adjacent, inverted jobs reduces the number of inversions by one and **does not increase the max lateness**
+
+
+### Minimizing lateness: Inversion 
+TO DO ADD 
+
+### Merge Sort 
+Uses divide and conquer paradigm
+
+*Merging* takes \\(O(n)\\) time 
+*Sorting* takes \\(O(log_2n)\\)
+
+so merge sort is \\(O(log(n) * n)\\)
+
 
