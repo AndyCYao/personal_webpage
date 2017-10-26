@@ -317,7 +317,20 @@ the algorithm always maintains the invariant of
 ### General way to prove Kruskal and Prim algorithm 
 we can use the cycle and cut property to prove these two algorithm, and also the greedy algo algo. invariant 
 
-### Union Find Algo
+### Union Find Algo AKA Disjoint Set
+This D.S handles finding which element does a set belongs to quickly. It has two operations.
+
+Kruskal Algorithm uses this D.S to detect cycles. If two nodes point to the same parent, then they have cycle. otherwise, you can union them.
+
+ 
+1. Find() 
+	find the root of the tree containing x	
+2. Union() 
+	merge two sets together. 
+	Quick Union - is implemented as a forest, so separate trees. each tree is
+	identified by their root. When we union two trees together, its updated in the root. the 	 bigger of the tree swallows the smaller tree, this means the resulting tree is wide. 
+
+
 
 ## Greedy Algorithm Interval Scheduling
 ### Greedy Algorithm Template
@@ -336,8 +349,39 @@ Use Earliest Deadline First
 ### Proof - swapping two adjacent, inverted jobs reduces the number of inversions by one and **does not increase the max lateness**
 
 
-### Minimizing lateness: Inversion 
-TO DO ADD 
+### Interval Partitioning
+We now have jobs, and resources, such as lectures and rooms. we want to minimize the number of rooms and schedule all the lectures. 
+
+We can resolve this using greedy algo again. 
+
+Using *Earliest Start Time First*
+
+	:::code
+	SORT lectures by earliest start time first
+	d = number of allocated class room
+	
+	For j = 1 to n number of jobs
+		If j is compatible with some class room
+			schedule lecture j in this class room
+		Else 
+			allocate a new classroom d+1
+			schedule j in classroom d+1
+		d + d+!
+	return schedule
+	:::
+
+we can implement this in \\(O(logn)\\) time by storing the classrooms in a *priority queue* where the key is the finish time if its last lecture. 
+
+#### Lower Bound of Interval Partitioning
+*Depth* is the maximum number of conflicting jobs at any given time. if three jobs have time conflict at 10 am. then the depth is 3. 
+
+The key obsevation is that, the optimized algorithm can't beat the depth. 
+ 
+### Minimizing Lateness: Earliest Deadline first
+Sorting by E.D first means there are no inversions, whic means job i and j such that i < j but j scheduled before i.
+
+We claim that fixing the inversion does not increase the max lateness. (because it was worst off before)	
+
 
 ### Merge Sort 
 Uses divide and conquer paradigm
@@ -347,4 +391,20 @@ Uses divide and conquer paradigm
 
 so merge sort is \\(O(log(n) * n)\\)
 
+### Counting Inversions
+Question is, how to count the inversions in an array. 
+ 
+We can use divide and conquer to solve this,
+	:::code
+	we divide the array into A and B sub array
+	sort them
+	scan A nd B from left to right
+	if \\(a_i\\) <  \\(b_i\\) then no inversion with anything in B
+	if \\(a_i\\) >  \\(b_i\\) then \\(b_i\\) is inverted with everything in A
+	Append smaller element to sorted list \\(C\\)
+	:::	
+incidentally, we can also output the sorted list this way. 
 
+the sort and count algo runs in \\(O(nlogn)\\) time 
+
+as in \\(T(n) = T({n/2}) + T({n/2}) + O(n)\\) when n > 1
