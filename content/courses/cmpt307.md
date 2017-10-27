@@ -368,7 +368,6 @@ Using *Earliest Start Time First*
 			schedule j in classroom d+1
 		d + d+!
 	return schedule
-	:::
 
 we can implement this in \\(O(logn)\\) time by storing the classrooms in a *priority queue* where the key is the finish time if its last lecture. 
 
@@ -395,14 +394,15 @@ so merge sort is \\(O(log(n) * n)\\)
 Question is, how to count the inversions in an array. 
  
 We can use divide and conquer to solve this,
+
 	:::code
 	we divide the array into A and B sub array
 	sort them
 	scan A nd B from left to right
-	if \\(a_i\\) <  \\(b_i\\) then no inversion with anything in B
-	if \\(a_i\\) >  \\(b_i\\) then \\(b_i\\) is inverted with everything in A
-	Append smaller element to sorted list \\(C\\)
-	:::	
+	if a_i <  b_i then no inversion with anything in B
+	if a_i >  b_i then b_i is inverted with everything in A
+	Append smaller element to sorted list C
+
 incidentally, we can also output the sorted list this way. 
 
 the sort and count algo runs in \\(O(nlogn)\\) time 
