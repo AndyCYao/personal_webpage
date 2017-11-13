@@ -408,3 +408,26 @@ incidentally, we can also output the sorted list this way.
 the sort and count algo runs in \\(O(nlogn)\\) time 
 
 as in \\(T(n) = T({n/2}) + T({n/2}) + O(n)\\) when n > 1
+
+### Dynamic Programming
+In general, dynamic programming is done in these four steps
+
+1. Describe an array and say how to obtain an optimal solution from the array
+2. Give a recurrence for your array, and prove its correctness
+3. Give pseudo code algo for filling the array
+4. give an algo for finding an optimal solution to the original problem, using the values in array
+
+#### Weighted Interval Scheduling
+
+\\(p(j)\\) is the largest index i and i < j, so intervals i and j are disjoint. 
+
+\\(OPT(j) = max(V_j + OPT(p(j)), OPT(j-1))\\) 
+
+this means either the optimal interval has interval J, or it has not, in which case we look at \\(OPT(j-1)\\)
+
+Job J belongs to an optimal solution if and only if \\(v_j + OPT(p(j)) >= OPT(j-1)\\)
+
+To run the algorithm faster, we store all the optimal subpath in an array, so that we do not have to process it again. this is 
+fundamental in dynamic programming. 
+
+

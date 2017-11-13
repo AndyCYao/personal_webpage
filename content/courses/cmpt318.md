@@ -94,4 +94,75 @@ python has built in regular expression Python re.
 * r'[ab\.]+' matches 1+ a or b or .
 * r'\d+' matches 1+ digits
 * r'\s*' matches 0+ spaces ([ \t\n\r\f\v])
-* r'\S*' matches 0+ non-spaces characters
+* r'\S*' matches 0+ non-spaces character
+
+#### Hypothesis Testing
+\\(H_o\\) is null hypothesis, \\(H_A\\) is the alternate hypothesis, these two cases should cover all scenarios. 
+
+We assume \\(H_o\\) is true, and we test to see what's the probability, \\(p value\\), that it is true. If it is under an predetermined threshold \\(alpha\\) then we can reject \\(H_o\\) , otherwise we __fail__ to reject \\(H_o\\)
+
+We need to make sure we are not running tests over and over until we reach a \\(p<0.05\\) This is a dishonest way to run experiments. (Remember 0.05 is 1/20 pure chance we will get \\(p<0.05\\)) 
+
+
+#### Student T-Test 
+\\(H_o\\) is two samples have the same variance. 
+
+- Sample is a representative of the population
+- Assumes the sample are independent and IID
+- Population are normally distributed
+- Population has the same variance
+
+If the sample doesn't have these properties, then T-Test would not do any good for you. 
+
+#### Normal Test
+We can use the scipy.stats.normaltest to test for normality. 
+the \\(H_o\\) is that sample is normally distributed
+
+if data does not pass the normality test, we can transform the data by taking log, or square, or square root, to try for normality again
+
+#### Levenes Test
+test to see if two distributions have the same variance
+
+#### Type 1 Error
+This is when we incorrectly reject the null hypothesis 
+
+#### Bonferroni Correction
+This is used to account for when we are applying multiple hypothesis testings together. We increase our chance of Type 1 errors because we distort our alpha. 
+
+For example, We have three tests with confidence interval of .95 each. that's .95^3 = .86 odds of no incorrect rejection. 
+Bonferroni correct fixes this.
+
+#### Analaysis of Variance (ANOVA)
+tests to see if any of the group have different means. 
+
+Assumes group have equal variance, are normally distributed, and IID. 
+
+After ANOVA produces a result, if the result is significant, you can perform a Post Hoc Analysis such as Tukey HSD to further check the means difference. 
+
+### Non Parametric Testing
+#### Mann Whitney U Test vs Chi Square vs Regression
+These tests are used to compare datasets that are not normally distributed. 
+
+__Mann Whitney__ - test whether one group is larger / smaller than another. the values need to be ordinal, and indepedent observations. The idea is if we merge the two datasets together then sort. the output should be even shuffled. 
+__Chi Square__   - works in category of data, forms a contingency table, and sees how out of proportion your data is. 
+__Regression__   - this is an inference test too, the null hypothesis is that the slope of the line is 0, ie, y does not depend on x. 
+
+
+### Machine Learning Algorithm
+
+#### Naive Baye:
+
+Create predictions based on multiplying the likelihoods of various probabilities  together
+
+Baye's Theorem \\(P(A|B) = P(B|A) * P(A)/P(B) \\)
+
+Note, the input features have to be *independent* for this work, hence the name naive.
+
+#### Preprocessing
+
+SKLearn MinMax - organize data from 0 to 1, use when distribution is not gaussian or SD is very small
+\\((x_i-min(x))/(max(x)-min(x))\\)
+
+StandardScaler - scales your data so distribution is centred around 0, and standard deviation of 1.
+\\((x_i-mean(x))/stdev(x)\\) 
+
