@@ -430,4 +430,134 @@ Job J belongs to an optimal solution if and only if \\(v_j + OPT(p(j)) >= OPT(j-
 To run the algorithm faster, we store all the optimal subpath in an array, so that we do not have to process it again. this is 
 fundamental in dynamic programming. 
 
+#### Shortest Path and Negative Weight (Dynamic Programming)
+#### Bellman Ford Algorithm
+When we do shortest path we can't have graph with negative cycle, because then we would use negative cycle many times to drive down our cost of path
+
+this algo fixes this. 
+
+	1.) Bellman(Graph, Weight, Source) Rember Graph G is initalize in adjacency lists
+		for i = 1 to V - 1 // remember shortest path has V-1 edges
+			for each edge(u,v) in E
+				if d[v] > d[u] + w(u,v) // Relax Function
+					set d[v] = d[u] + w(u,v)
+					pi[v] = u
+		//Checks for negative cycle below
+		for each edge (u,v) in E 
+			if d[v]  > d[u] + w(u,v) 
+			//then report negative cycle exists
+
+Complexity is O(VE) for first part, and O(V) one pass for the check. note remember in a dense graph the edges could be V^2. 
+so compexlity could be O(v^3)
+
+Proof Of Belman Ford:
+	Claim - Algorithm will return shortest path or negative cycle in V-1 iterations 
+	
+	Proof by induction. 
+		-Let p be a shortest path with minimum number of edges.  
+		-Since no negative weight cycle, it implies p is simple, and it implies k <= v-1
+		
+		in this algo, we are examining (relaxing) every edge every pass, so we are going to be building towards the k. 		     
+
+#### Floyd Warshall Shortest Path Algorithm 
+Discovers shortest path between ALL vertices, 
+
+
+### Flow Network
+#### Residual Graphs
+Given a directed graph with capacities for each edge, we can think of its residual graph G_f as a graph that shows all the unspent capacities (forward edge residuals), along with its flows that can be reverse out (backward edge residuals)
+
+Ford Fulkerson algorithm uses the idea of residual graph , and "augment path"
+to determine the max flow. The augment path is a path from the source S to the sink T along the residual graph
+
+
+#### Halls Theorem
+Given a bipartite graph , where the left side and right side are the same size. 
+
+If for all subset S belonging to one side, (say L) , 
+
+find all the neighbor nodes of that S , call it N(S)
+
+if the size of S is <= size of N(S) then there is perfect matching. 
+
+#### Edge Disjoint Path
+two paths are disjoint if they have no edge in common (but they can have nodes in common)
+
+#### Mengers Theorem
+Mengers Theorem says if the paths are unit weight . The max number of edge disjoint paths is the max flow. 
+
+intuition: since edges are unit weight, they are either 1 or 0 by integrality, so they either participate in the path or not. 
+
+
+
+### NP Complete
+
+#### Reduction
+take something from NP Complete, and convert(reduces) it to another problem
+
+colloquially, we take the input from the NP complete problem x, and do something with it (blackbox) and turn it into the input of another problem y. 
+
+this blackbox has properties:
+if the y is a yes, then x was a yes too
+if y is a no, then x was a no too
+
+the reduction has to be polynomial time (fast) because we dont want reduction to take more than solving the algo itself.
+hence the term \\(<=_p\\)
+
+### General way to prove new problem is NP -complete (Reduction)
+1. Prove that X belongs to NP (ie easy to check a solution, but hard to prove how it was calculated)
+2. Choose a problem Y that is known to be NP - Complete
+3. Prove that Y <= p X
+
+#### 3 Satisfy
+any number of variable but 3 per clause
+
+let number of variable be n,
+m number of clauses. 
+
+
+
+#### Vertex Cover
+We say a subset of S nodes are vertex covers if every edge in graph G at least have one edge in S.
+
+
+#### Clique
+is a maximum problem, given a graph and a number k, can we find the maximum clique of k 
+
+if I fix the k to a small number then it might be easier. if our machine cannot find a k clique, then it wont be able to find any k+1 more clique, because k+1 clique contains a k clique
+
+#### Hamiltonian Circuit reduce to Travelling Salesmen
+Hamiltonian Circuit (HC) looks for a path with no repeating vertices that traverse the whole graph
+TSP looks for a path that traverse the whole graph with the minimum cost (bound by some number B)
+
+we want to show HC <=p TSP 
+
+we observe that HC is a special case of TSP,
+
+**Reduction**
+We have the original graph G for Ham Circuit.
+
+we construct a graph G' of TSP that has all edges weight of 1. and bound by N (number of vertices)
+
+solving G' would solve G
+
+
+#### Independent Set and Vertex Cover
+Independent Set (IS) - each node in the independent set S does not share edges
+
+Vertex cover (VC) - all edges in the graph connects to the vertex cover set S'
+
+IS usually are types asked like this, given a k number, can we find an IS of size k or more?
+
+VC is usually given a k number, can we find an VC of size k or less?
+
+IS can be reduce to VC
+
+**Reduction**
+Let G=V,E be a graph, then S is an independent set IFF its complment V-S is a vertex cover.
+
+then
+
+Independent Set <=p Vertex Cover
+Vertex Cover <=p Independent Set
 

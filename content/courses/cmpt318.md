@@ -105,7 +105,7 @@ We need to make sure we are not running tests over and over until we reach a \\(
 
 
 #### Student T-Test 
-\\(H_o\\) is two samples have the same variance. 
+\\(H_o\\) the two groups have similar means  
 
 - Sample is a representative of the population
 - Assumes the sample are independent and IID
@@ -121,7 +121,7 @@ the \\(H_o\\) is that sample is normally distributed
 if data does not pass the normality test, we can transform the data by taking log, or square, or square root, to try for normality again
 
 #### Levenes Test
-test to see if two distributions have the same variance
+test to see if two samples  have the same variance
 
 #### Type 1 Error
 This is when we incorrectly reject the null hypothesis 
@@ -131,6 +131,11 @@ This is used to account for when we are applying multiple hypothesis testings to
 
 For example, We have three tests with confidence interval of .95 each. that's .95^3 = .86 odds of no incorrect rejection. 
 Bonferroni correct fixes this.
+
+#### Tukey Honest Significant Different ( HSD) Test
+
+THis is another way to compare multiple groups of data, instead of just using different T-Test pairs. But Tukey HSD takes in consideration of the number of groups being compared. 
+
 
 #### Analaysis of Variance (ANOVA)
 tests to see if any of the group have different means. 
@@ -144,11 +149,18 @@ After ANOVA produces a result, if the result is significant, you can perform a P
 These tests are used to compare datasets that are not normally distributed. 
 
 __Mann Whitney__ - test whether one group is larger / smaller than another. the values need to be ordinal, and indepedent observations. The idea is if we merge the two datasets together then sort. the output should be even shuffled. 
-__Chi Square__   - works in category of data, forms a contingency table, and sees how out of proportion your data is. 
+__Chi Square__   - works in category of data, forms a contingency table, and sees how out of proportion your data is. whats the chance your variance in the data set is due to chance.  Degree of freedom is related to how many type of samples you got. 
 __Regression__   - this is an inference test too, the null hypothesis is that the slope of the line is 0, ie, y does not depend on x. 
 
 
+
 ### Machine Learning Algorithm
+
+#### Regression (Predict a number)
+
+Taking an input and produce a quantity most relevant to the model. There is linear regression, then there is polynomial regression. Usually the higher degree the input allows closer fit to the data. 
+
+but having too close a fit (overfit) is bad too, because it means the model is good at predicting the training set, but not much anything else.
 
 #### Naive Baye:
 
@@ -158,6 +170,42 @@ Baye's Theorem \\(P(A|B) = P(B|A) * P(A)/P(B) \\)
 
 Note, the input features have to be *independent* for this work, hence the name naive.
 
+#### Nearest Neighbours
+
+What k nearest training points are we closest to. 
+
+smaller neighbours result in overfitting the data, and larger neighbours underfit reality. 
+
+#### Support Vector Machines
+
+Generate the best line that has the largest margin with no points inside. This line divides the classifiers. 
+
+Large margin with many smaller bad points, or smaller margins with few bad points. 
+
+#### Neural Net
+The hottest thing in machine learning, 
+It works with idea of Perceptron
+
+- Take an input
+- weight them 
+- have an activation function to normalze the result
+- also learn the weights from training data. 
+
+we add extra layers of computation to do more complex decisions
+using back propagation techniques. 
+
+The models need initial weights assigned, then use training data to improve them until the NN converge to good values. 
+
+
+#### Principal Component Analysis (PCA)
+
+We do PCA to reduce number of dimensions. It does so by finding the vector along the which data has the maximum variance, and continously collapse the data long the vector until out of dimensions. 
+
+### Checking classifier accuracy
+__Precision__ 
+    how many selected were correct.
+__Recall__
+    how many correct were found. 
 #### Preprocessing
 
 SKLearn MinMax - organize data from 0 to 1, use when distribution is not gaussian or SD is very small
@@ -165,4 +213,25 @@ SKLearn MinMax - organize data from 0 to 1, use when distribution is not gaussia
 
 StandardScaler - scales your data so distribution is centred around 0, and standard deviation of 1.
 \\((x_i-mean(x))/stdev(x)\\) 
+
+### Feature Scaling
+
+MinMaxScaling is 
+
+    (X - X_min) / (X_max - X_min)
+
+StandardScaling is 
+
+    z = (x - mean) / SD
+
+so it has mean of 0, and SD of 1.
+
+### Feature Engineering
+Machine learning and colour prediction needed feature engineering to get better results (we tested ML using RGB colouring and LAB colouring.)
+
+### Supervised learning
+we know the result and train the model for it
+
+### Unsupervised learning
+where there is no right answer known but the algorithm tries to find structure in data. Clustering is related to this category
 
