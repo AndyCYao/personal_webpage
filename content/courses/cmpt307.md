@@ -214,16 +214,21 @@ If a graph is bipartite, then there cannot be an odd length cycle.
 ### Bipartite graph and BFS Tree 
 to check if something is a bipartite graph, you run BFS to generate a BFS tree, then see if you can color each layer distinct color. 
 
-Exactly one of the following holdes:
+Exactly one of the following holde:
+
 1. No edge of G joins two nodes of the same layer, then G is bipartite
+
 2. an edge of G joins two nodes of the same layer, and G has odd-length cycle, so not bipartite
 
 ### Directed Graphs
 ### Terminologies
 Mutually Reachable - if there is a directed path from node \\(u\\) to \\(v\\) and vice versa 
+
 Strongly Connected - if every pair of nodes is mutually reachable, then the graph is *Strongly Connected*
+
 Strong Component - maximal subset of mutually reachable nodes. (cannot add more nodes without breaking 'strong connectness')
 Directed Acyclic Graph - a directed graph that contains no directed cycles. 
+
 Topological order 	   - is an ordering of its nodes \\(v1, v2, .. vn\\) so that every edge \\((v_i,v_j)\\) we have \\(i < j\\)
 
 *Theorem* - Can see if \\(G\\) is strongly connected in \\(O(m+n)\\) time
@@ -240,26 +245,25 @@ Proof by Contradiction.
 
 1. Suppose G is not a DAG , then this means there exists a directed cycle
 2. let \\(v_x\\) be the vertex with the lowest index in the cycle 
-so \\(v_x...v_{x+1}.. v_{x+2}... v_{j} ... and ... v_x\\)
+so \\(v_x...v_{x+1}.. v_{x+2}... v_{j}  ... v_x\\)
 
 3. for \\(v_j\\) to go to \\(v_x\\), \\(j < x\\) , per topological order but \\(j > x\\)
 hence contradiction
 
 ### Topological Sort Given a DAG 
-- the Topological Sort is just a DFS with an extra temporary stack.
+the Topological Sort is just a DFS with an extra temporary stack.
+	::: code 
+	Version 1 From GeeksForGeeks
+	instantiate a temp. stack 
 
-::: code 
-Version 1 From GeeksForGeeks
-instantiate a temp. stack 
+	for each node x in unvisited nodes:
+		mark x as visited 
+		do recursive DFS on x (remember neighbor is only adjacent if theres an arc from x to its neighbor)
+			mark every node in this DFS as visited
+		when the DFS reach its end, push that end node onto the stack(this node has the lowest index)
+	next 
 
-for each node x in unvisited nodes:
-	mark x as visited 
-	do recursive DFS on x (remember neighbor is only adjacent if theres an arc from x to its neighbor)
-		mark every node in this DFS as visited
-	when the DFS reach its end, push that end node onto the stack(this node has the lowest index)
-next 
-
-pop / print the stack , this is the topological sort. 
+	pop / print the stack , this is the topological sort. 
 
 Version 2 From Class 
 Find a node v with no incoming edge and order it first 
@@ -293,7 +297,7 @@ Recurrence	Algorithm	Big-Oh Solution
 
 \\(T(n) = 2 T(n/2) + O(1)\\)	tree traversal	\\(O(n)\\)
 
-\\(T(n) = T(n-1) + O(n)\\)	Selection Sort (other n2 sorts)	\\(O(n2)\\)
+\\(T(n) = T(n-1) + O(n)\\)	Selection Sort (other n2 sorts)	\\(O(n^2)\\)
 
 \\(T(n) = 2 T(n/2) + O(n)\\)	Mergesort (average case Quicksort)	\\(O(n log n)\\)
 
@@ -346,7 +350,17 @@ Use Earliest Deadline First
 * EDF Has no inversions 
 * If a schedule  (with no idle time) has an inversion, it has one with pair of inverted job scheduled consecutively
 
-### Proof - swapping two adjacent, inverted jobs reduces the number of inversions by one and **does not increase the max lateness**
+swapping two adjacent, inverted jobs reduces the number of inversions by one and **does not increase the max lateness**
+
+suppose there is an inversion, in Greedy it chose job x, then job y
+and in another scheduler it chose job y ahead of job x.
+
+	1. Job x duration must be less than Job y because Greedy chosed it
+	2. All other jobs except for x and y still have the same lateness
+	3. we must show that the greedy x + y is <= schedule o y+x
+
+	
+
 
 
 ### Interval Partitioning
@@ -436,8 +450,10 @@ When we do shortest path we can't have graph with negative cycle, because then w
 
 this algo fixes this. 
 
-	1.) Bellman(Graph, Weight, Source) Rember Graph G is initalize in adjacency lists
-		for i = 1 to V - 1 // remember shortest path has V-1 edges
+	1.) Bellman(Graph, Weight, Source) Graph G is initalize in adjacency lists
+
+		memoize d[n] <- initialize as infinity
+		for i = 1 to V - 1 // shortest path has V-1 edges
 			for each edge(u,v) in E
 				if d[v] > d[u] + w(u,v) // Relax Function
 					set d[v] = d[u] + w(u,v)
@@ -470,6 +486,7 @@ Given a directed graph with capacities for each edge, we can think of its residu
 Ford Fulkerson algorithm uses the idea of residual graph , and "augment path"
 to determine the max flow. The augment path is a path from the source S to the sink T along the residual graph
 
+Flow networks can solve all sorts of problem, like finding the max number of matching in a set, or finding the number of projects to choose in project management (max revenue and min cost)
 
 #### Halls Theorem
 Given a bipartite graph , where the left side and right side are the same size. 
@@ -561,3 +578,34 @@ then
 Independent Set <=p Vertex Cover
 Vertex Cover <=p Independent Set
 
+**Coping with NP Completeness**
+
+***Vertex Cover*** - theory says it takes \\(O(k*n^{k+1})\\) subset size of k
+
+we aim to cap the \\(k\\) value down to a feasible size, so that our brute force algorithm can actually run
+
+for vertex cover \\(S\\) of size \\(k\\), we can remove a node \\(u\\) from \\(S\\), then \\(S\\) - \\(u\\) will still be a vertex cover of the original graph without \\(u\\)
+
+
+we also observe that for each node n, there is at most \\(n-1\\) edges it can have. 
+
+so the VC of size \\(k\\) covers at most \\(k*(n-1)\\) edges
+
+this means any graph with more than that many edges, cannot have a vertex cover
+
+so our algorithm goes like this
+
+	:::code
+	VertexCover(G, k):
+		if G has more than k*(n-1) edges return False
+		
+		if G has no edges then return true // base case
+
+		let (u,v) be any edge of G
+			hasVC1 = VertexCover(G-u, k-1)
+			hasVC2 = VertexCover(G-v, k-1)
+		return hasVC1 OR hasVC2
+
+the depth of the recursion tree is \\(k\\). there is 2^k calls
+
+each method takes \\(O(kn)\\) time. so result is \\(O(2^k*kn)\\)
