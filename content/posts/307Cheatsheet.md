@@ -137,6 +137,29 @@ number of paths from s to t that does not have overlap edges
 Menger's theorem says max number of edge disjoint paths is the same as min cut from s to t, assuming each edge has capacity 1
 
 
+***Konig-Egervary Theorem***
+this theorem says the maximum size of matching is <= the minimum size of vertex cover
+
+***Approximation***
+
+theres an \\(O(n)\\) way of finding vertex covers, the result is approximately
+
+\\(S = 2S_{optimal}\\)
+
+    :::code
+    findVC(graph G):
+        init S <- {}  //our vertex cover
+        while there are edges in G:
+            take an edge (u,v)
+            add both u and v into set S
+            remove all edges related to u, v
+        return S
+
+this is using the idea that S really contains set of pairs of independent nodes, 
+
+
+
+
 ### Proofing strategy
 ***Greedy Algorithm***
 
@@ -155,10 +178,11 @@ the greedy algorithm chooses something that belongs to the \\(S_{promising}\\)
 
 - retrieve the answer by looking at \\(A(n)\\), depending on the problem, the answer can be at the last spot of the array (for things like max number of something). or we need to build the answers from the array by iterating through it. 
 
-*** NP Completeness***
+*** NP Completeness ***
 
 - first show that the problem z is NP , this involves checking if there is a certifier that can validate an answer in polytime
 
 - find a NP Complete problem X that can reduce to z. this involves converting an instance of X to have the properties z. lets call this new converted instance Y
 
 - we then need to proof that Y Is true if and only if z is true, and vice versa. 
+
