@@ -609,3 +609,58 @@ so our algorithm goes like this
 the depth of the recursion tree is \\(k\\). there is 2^k calls
 
 each method takes \\(O(kn)\\) time. so result is \\(O(2^k*kn)\\)
+
+Improving ***Independent Set*** algorithm 
+
+we notice that the __maximum__ independent set on trees will contain the leafs of trees. we can proof it by the exchange argument.
+
+1. if the maximum set \\(S\\) has leaf \\(v\\) then we are done
+2. if \\(S\\) does not have \\(v\\) but has its parent \\(u\\) then removing \\(u\\) and add \\(v\\) will be just as same size.
+3. if \\(S\\) does not have either, then adding \\(v\\) into \\(S\\) will improve it
+
+	:::code
+	Indepedent-Set-In-A-Forest(F):
+		initialize S = {} max indep. set
+		while forest F has at least one edge:
+			Let e=(u,v) where v is a leaf
+			Add v to S
+			Delete nodes u,v from forest F, and all of its associated edges
+	return S
+
+this runs in \\(O(n)\\) time
+
+***Vertex Cover*** and ***Matching***
+
+let \\(M\\) be matching, and let \\(S\\) be vertex cover
+then the size of \\(M\\) is <= \\(S\\)
+
+The proof is, each vertex can cover at most one edge in any matching.
+
+__Konig-Egervary__ Theorem says in any bipartite graph, the max cardinality of a matching equals to the min cardinality of vertex cover
+
+This leads to us being able to approximate a vertex cover in a graph
+if our algorithm is 
+
+	:::code
+	algoVC(Graph (G,E)):
+		S = empty
+		while E is not empty:
+			pick an edge e=(u,v) in E
+			add both u and v into S
+			remove from G all edges touching u or v
+		end while
+		return S
+
+the above algorithm will find a vertex cover VC. the VC won't be the minimum size, but it runs in linear time.
+
+if we compare this VC \\(S\\) with the optimal VC \\(S*\\)
+we will find \\(|S| <= 2|S^*|\\). The two is the approximate factor. 
+
+proof -> notice in the code, we are adding both u and v into the S, and stripping their related edges. S is in effect a set of disjointed pairs bundled together. 
+
+any vertex cover for G must use at least one vertex per edge in the matching, so \\(|S*| >= |matching| = |S|/2\\)
+
+***Knapsack Problem***
+
+the standard dynamic programming solution to knapsack problem is not polynomial to the input size, so we can improve the solution of knapsack by shrinking the weight limit of nodes proportionally.
+
