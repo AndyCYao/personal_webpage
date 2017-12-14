@@ -165,8 +165,7 @@ tests to see if any of the group have different means.
 
 Assumes group have equal variance, are normally distributed, and IID. 
 
-After ANOVA produces a result, if the result is significant, you can perform a Post Hoc Analysis such as Tukey HSD to further check the means difference. 
-
+After ANOVA produces a result, if the result is significant, you can perform a Post Hoc Analysis such as Tukey HSD to find out which group is different.
 ### Non Parametric Testing
 #### Mann Whitney U Test vs Chi Square vs Regression
 These tests are used to compare datasets that are not normally distributed. 
@@ -386,6 +385,17 @@ from fast to slow
 4. series.apply
 5. dataframe.apply
 6. python loop
+
+##### Exercise 6
+`stats.chi2_contingency()` takes in a pandas pivot table
+
+`stats.mannWhitneyu()` takes in two series 
+
+did anova analysis using `stats.f_oneway(lists of data)` 
+ to do pairwise_tukey, we had to use 'melt' to transform wide data into long data
+
+##### Exercise 7
+
 
 ##### Exercise 10
 Part 1 
