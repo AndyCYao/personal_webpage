@@ -16,7 +16,7 @@ GPA, is it cumulative, or upper divison only etc.
 
 Numpy objects are faster than regular python objects because numpy obj are strongly typed, and are kept in C style arrays. 
 
-np.vectorize applys np.ufunc into whole array . 
+`np.vectorize` applys np.ufunc into whole array . 
 
 ### Getting Data 
 Data format include csv, json, xml. 
@@ -24,9 +24,12 @@ Data format include csv, json, xml.
 Could come from web api, databases. files. 
 
 ### Extract-Transform-Load 
-Extract - take data from source, and load into your workspace 
-Transform - fixing , cleaning,remove identification, etc.  janitorial work.
-Load - save for next pipeline. 
+`Extract` - take data from source, and load into your workspace 
+
+`Transform` - fixing , cleaning,remove identification, etc.  
+janitorial work.
+
+`Load` - save for next pipeline. 
 
 ### Noise Filtering / Signal Processing
 Part of cleaning, reality is our data can have noise covering up the truth. 
@@ -40,6 +43,11 @@ Part of cleaning, reality is our data can have noise covering up the truth.
 
 LOESS is computational heavy because of constantly recalculating per the sliding window. It gives accurate data if work with lots of data.
 
+LOESS, smaller fraction means smaller set of neighbors, so more sensitive to noise in that region
+ 
+larger fraction means won't respond to signal changes as well.
+
+
 ### What is a covariance matrix
 Covariance measures how related item x is to y. Positive covariance means when x moves up, y moves up, Negative Convariance means when x moves up, y moves down. and 0 means they are not related at all
 
@@ -47,10 +55,25 @@ read up on covariance matrix [here](http://www.theanalysisfactor.com/covariance-
 
 This matrix just takes this idea, and extends it over multiple items. the matrix is *symmetric* that means when you transpose the table, it is the same values.
 
+note unlike correlation, covariance is not standardized betwee -1 , 1, it's in the original unit.
+
 ### Kalman Filtering 
 read [article](http://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/) for explanation.
 
-The filter works with two things, our observations, and our predictions of what we expect to happen (the prior). Both are assumed to be normal distribution. 
+The filter works with two things, our observations (given by the sensor AKA `Observation matrix`), and our predictions (given by our understanding , AKA `transition matrix`) of what we expect to happen (the prior). Both are assumed to be normal distribution. 
+
+the `observational covariance, R` is how error prone we think about our observations. 
+
+the lower the value, the less sensor errors are assumed, and observations have more effect on result,and more noise. 
+
+the higher the values, the less the noise,
+
+the `transitional covariance, Q` says what we think about our errors in our prediction. 
+
+the lower the value - the less prediction errors are assumed, predictions have more effect on the result, -> less noise
+
+the higher the value - more noise
+
 
 Using the exercise on GPS data as an example. We know the person can walk at most 1 meter per second, we also know the GPS sensor records a data every 5 seconds. 
 
@@ -148,7 +171,7 @@ After ANOVA produces a result, if the result is significant, you can perform a P
 #### Mann Whitney U Test vs Chi Square vs Regression
 These tests are used to compare datasets that are not normally distributed. 
 
-__Mann Whitney__ - test whether one group is larger / smaller than another. the values need to be ordinal, and indepedent observations. The idea is if we merge the two datasets together then sort. the output should be even shuffled. 
+__Mann Whitney__ - test whether one group is larger / smaller than another. the values need to be ordinal, and indepedent observations. The idea is if we merge the two datasets together then sort. the output should be even shuffled.  works with data we can ordinal data best, 
 __Chi Square__   - works in category of data, forms a contingency table, and sees how out of proportion your data is. whats the chance your variance in the data set is due to chance.  Degree of freedom is related to how many type of samples you got. 
 __Regression__   - this is an inference test too, the null hypothesis is that the slope of the line is 0, ie, y does not depend on x. 
 
@@ -180,16 +203,20 @@ smaller neighbours result in overfitting the data, and larger neighbours underfi
 
 Generate the best line that has the largest margin with no points inside. This line divides the classifiers. 
 
-Large margin with many smaller bad points, or smaller margins with few bad points. 
+with SVM, we need to decide between large margin with many smaller bad points, or smaller margins with few bad points. (soft margin or hard margin respectively)
 
+if the data is not linearly separatable, we can add polynomial features (through the polynomial kernel) for SVM.
+
+the kernel in a SVM adds features to the model input. a kernel can be non-linear, RBF Kernel is another option
 #### Neural Net
-The hottest thing in machine learning, 
-It works with idea of Perceptron
 
-- Take an input
-- weight them 
-- have an activation function to normalze the result
-- also learn the weights from training data. 
+- Take an input (like pixels in an image)
+- feed them into a layer of weights and biases, at each node, we can think of weights as the strength of the various inputs , and bias as how likely this node will be fired.
+
+- have an activation function to normalize the result (squeezes the range of numbers into just 0,and 1)
+- the network refers to how the data are arrange in layers, each layer influences the next layer to do stuff
+- when we say learning, it refers to how to properly tune the weights and biases.
+
 
 we add extra layers of computation to do more complex decisions
 using back propagation techniques. 
@@ -199,7 +226,7 @@ The models need initial weights assigned, then use training data to improve them
 
 #### Principal Component Analysis (PCA)
 
-We do PCA to reduce number of dimensions. It does so by finding the vector along the which data has the maximum variance, and continously collapse the data long the vector until out of dimensions. 
+We do PCA to reduce number of dimensions. It does so by finding the vector along the which data has the maximum variance, and continously collapse the data along the vector until out of dimensions. 
 
 ### Checking classifier accuracy
 __Precision__ 
@@ -218,11 +245,11 @@ StandardScaler - scales your data so distribution is centred around 0, and stand
 
 MinMaxScaling is 
 
-    (X - X_min) / (X_max - X_min)
+\\((X - X_{min}) / (X_{max} - X_{min})\\)
 
 StandardScaling is 
 
-    z = (x - mean) / SD
+\\(z = (x - mean) / SD\\)
 
 so it has mean of 0, and SD of 1.
 
@@ -233,5 +260,158 @@ Machine learning and colour prediction needed feature engineering to get better 
 we know the result and train the model for it
 
 ### Unsupervised learning
-where there is no right answer known but the algorithm tries to find structure in data. Clustering is related to this category
+where there is no right answer known but the algorithm tries to find structure in data. Clustering is related to this category 
 
+A few clustering algorithm include `KMeans(), AgglomerativeClustering, AffinityPropagation`
+
+Anomaly Detection is another unsupervise technique, like spot the spam , or attacker on server, credit card charges, etc.
+
+
+
+## Spark
+
+Spark dataframes are implemented in Scala, which compiles in Java Virtual Machine. the python code are just for building execution plans.
+
+pySpark and Pandas has some synergy, we can create a spark dataframe with pandas dataframe as a parameter, or python list, 
+
+    :::python
+    data = spark.createDataFrame(pd_DF)
+
+and convert back to pandas with
+    :::python
+    pd_data = data.toPandas()s
+
+
+Driver - program you are writing.
+Executor - manages the data in spark dataframe
+
+in a local spark, one driver and \\(n\\) executor threads.
+
+on a cluster, driver runs on gateway and YARN starts executors on the cluster nodes, the hadoop distributed file system (HDFS) stores data on cluster nodes. the `spark-submit` keyword interacts with YARN
+
+#### Partition
+data in RDD are split in partitions, partitions are configurable, and each partition never span multiple machines.
+
+we want partitions to be similar size, so that executors don't sit idle
+
+in general we want between 100 and 10000 partitions
+
+we can explicitly declare for number of partitions like so
+
+    :::python
+    x = spark.range(10000, numPartitions=6)
+
+we can combine partitions together with `.coalesce(n)` 
+
+because partitions can be stored on different machines, we need to be careful about __shuffle__ operations, which involves moving data across partitions across different machines. be careful of operations like `.repartition()` `.groupby()` 
+
+operations that can be pipelined, such as `.select(), .filter(), .withColumn(), .drop(), .sample()` are ok 
+
+#### Execution Plan and Lazy Evaluation
+although `GroupBy` is a shuffling operation, it's less severe because the spark is optimized for per partition aggregation, we can see by the `spark.explain()` line.  
+
+Spark uses lazy evaluation, which means only the relevant code are run. For example, since `.show()` only displays the top 20 rows, spark only calculates for 20 rows, not the whole dataframe.
+
+we can `cache` intermediate results that we know we will use later on, the `cache` keyword lets spark know this.
+
+**note** we can run SQL queries against spark dataframes by the `.createOrReplaceTempView(tableName)` then we can query against `spark.sql("SELECT foo FROM tableName")` 
+
+with SQL we can't take advantage of caching.
+
+its good to cache before multiple calls, like this
+
+    :::python
+    int_range = spark.range(..)
+    values = int_range.select(..).cache()
+    result1 = values.groupBy(..).agg(..)
+    result2 = values.groupBy(..).agg(..)
+
+#### Spark Joins
+`join` is a shuffling operations, so we need to be careful, if we have a really small table joining a large table, we would broadcast the small table. 
+
+    :::python
+    small_tbl = functions.broadcast(small_tbl)
+    joined_data = big_tbl.join(small_tbl, on='id')
+
+#### Spark User Defined Functions
+this is used when we want to run our own python functions (or python exclusive libraries such as RGB to LAB) against a column
+
+    :::python
+    def complicate_function(a,b):
+        return a + 2*b 
+    complicated_udf = functions.udf(complicate_function,
+                                    returnType=types.IntegerType())
+
+the UDF logic is sent out to the executor, and converted from JVM representation into python, called in python process, and result sent back into JVM
+
+### Resilient Distributed Dataset RDD
+the underlying data structure for Spark, is one-dimensional, and holds collection of whatever value we put in.
+
+Dataframes are implemented as `Row` objects of RDD, to work with RDD in python, these are the key words
+
+    :::python
+    sc = spark.sparkContext
+    rdd = sc.textFile('')
+    pprint(rdd.take(6))
+
+`rdd.take(n)` retrieves the first n elements as python list - similar to df.show(n)
+`rdd.map(f)` applys a function f to each element - similar to d.select(..)
+`rdd.filter(f)` applys a function f to each element, keeps row where returned True - similar to df.filter()
+
+### Numpy / Pandas speed
+pandas stores columns in contiguous column, so accessing columns is fast
+
+    :::python
+    df['col'].values
+    # is faster than
+    df.iloc[0] # a row object
+
+    # using numpy libraries is much faster 
+    # than using math libraries
+    np.sin(df['a'])
+    # rather than 
+    def do_work(a):
+        math.sin(a)
+    df['a'].apply(do_work)
+
+numexpr package has own expression syntax compiled internally, and allows for even faster running time
+
+data are stored in columns in contiguous blocks, so accessing columns are fast, rows needs to be constructed so row operations are slow.
+
+from fast to slow
+
+1. numpexpr 
+2. numpy expressions
+3. vectorize
+4. series.apply
+5. dataframe.apply
+6. python loop
+
+##### Exercise 10
+Part 1 
+
+intro to pyspark, we learned spark dataframe, keyword is `spark.read.json` to take in a json file and turn into dataframe. 
+
+`groupBy().mean().sort()` commands can be chained
+
+##### Exercise 11
+Part 1
+
+We used spark dataframe to get reddit comment relative scores, the main point of the exercise was to practice placing caches at the right spot. we learn that caching before multiple operations is the best, predefine the schema is helpful too as it defines the data type of each column
+
+broadcasting a small table to a big table is better than joining.
+
+Part 2
+
+here we practice using RDD to clean data. `spark.sparkContext.textFile` gets the RDD, then we can `map` and `filter` to clean the RDD dataset
+
+we added columns to a spark dataframe with the `df.withColumn(newColumnName, col operations)` keyword
+
+
+##### Exercise 12
+we used pySpark to get a word count of the most common words in a few novels.
+the key methods we used were 
+
+`spark.df.explode` which transposes one row into multiple rows
+
+`spark.df.split` which splits one row value base on a regex string

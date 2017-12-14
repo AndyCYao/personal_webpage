@@ -40,27 +40,45 @@ Course summary for 307 DS/Algorithm II with Valentine Kabanet
 
 - think modified Dijkstras Algorithm. finds the minimum spanning tree by repeatly adding min weight unexplored vertex to the set of explored vertex - that does not create a cycle
 
-???***Disjoint Data Structure***
+***Disjoint Data Structure AKA Union Find***
 
 - this is used for kruskal algo to find edges that do not create cycle.
 - we group all the "connected" edges in independent sets. so in kruskal if we are checking if two edges u, v create a cycle, we simply look for the set with u, and see if v is in it.
 
-???***Link By Size***
+- the "find" part of Union Find combines two independent sets together
+
+- this allows Kruskal to be implemented in O(mlogn) time 
+
+***Link By Size***
+
+- is the idea of maintaining a wide tree to keep the 2^height(root) and height(root) is log(r)
+- when we link, the smaller tree becomes another branch under the root of the big tree.
 
 ***Interval Scheduling***
 - to minimize lateness, we do greedy algorithm (GA) by selecting jobs with earliest deadline first
 - to get the maximum size of job in a schedule, we do GA by selecting earliest finish time first
-- Interval Partitioning...
+
+***Interval Partitioning***
+given n classes with different start time and m classrooms. find the minimum m classrooms needed to create the schedule.
+
+- for this, use earliest start time
+
+we can verify the lower bound of the algorithm (the minimum classrooms needed) with the idea of "depth"
+
+if there are x classes that have overlapping schedule, then the depth is x, and no algorithm can use fewer than x classrooms to accomodate that. 
 
 ***Divide and conquer***
 - refers to algorithm that divide the problem into subproblems, so smaller chunks that is easier to solve (like merge sort)
 
 - the run time of divide and conquer are usually logarithic , because we can visualize the calls in a tree structure, and each level is dividing the input size by some factor, and there are k such levels.
 
-???***Counting Inversions*** 
-Inversions have to do with job scheduling as well
+***Counting Inversions*** 
+- uses divide and conquer approach, divide the list in two halves, sort and count inversons in each half, then combine and count
+- Inversions have to do with job scheduling as well
 
-???***Integer Multiplication / Karatsuba**
+***Integer Multiplication / Karatsuba**
+- can use divide and conquer techniques to do addition subtraction
+
 
 ***Weighted Interval Scheduling***
 - is a type of dynamic programming (DP)
@@ -90,6 +108,15 @@ the DP array will have the value of shortest path from S to any node n
 - the algo ends at n-1, if we want to check for negative cycles, we run the algo one more time, and see if there are any changes, if there is, that means theres negative cycle
 
 ***Longest Common Subsequence***
+- we can use a DP algorithm to solve this problem. 
+
+given two strings A and B, the recurrence is
+
+1. if A and B are same size, check if A[last bit] = B[last bit] 
+2. if A and B are not same size, check max(A[lastbit] = B[last bit-1] , A[last bit-1] = B[last bit])
+
+so the memoize array is a table, and the final row / column stores the size of the sequence
+
 
 ***Longest Increasing Subsequence***
 
@@ -140,6 +167,12 @@ Menger's theorem says max number of edge disjoint paths is the same as min cut f
 ***Konig-Egervary Theorem***
 this theorem says the maximum size of matching is <= the minimum size of vertex cover
 
+***Randomization***
+this is for content resolution, how to deal with multiple processes wanting to access a resource, we can randomize it
+
+
+
+
 ***Approximation***
 
 theres an \\(O(n)\\) way of finding vertex covers, the result is approximately
@@ -157,7 +190,11 @@ theres an \\(O(n)\\) way of finding vertex covers, the result is approximately
 
 this is using the idea that S really contains set of pairs of independent nodes, 
 
+__knapsack problem__ is NP Complete, but we can approximate the best subset sum by shrinking the values of the weights proportionaly, because finding the optimal value is \\(O(nW)\\) time
 
+not polynomial in input size. as W is a number can be written in \\(log_2(W)\\)
+
+redefine the problem as the minimum weight of a knapsack which we can obtain a solution of value >=v 
 
 
 ### Proofing strategy
