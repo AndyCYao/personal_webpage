@@ -3,7 +3,8 @@
 {% block content %}
     <h2>Welcome to my personal webpage</h2>
     <ul>
-    {% for post in posts %}
+   
+    {% for post in posts | reverse %}
         <li>
             <a href= "{{ url_for('post', name=post.path.replace('posts/', '')) }}">
                 {{post.title}}
