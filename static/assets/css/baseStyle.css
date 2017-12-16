@@ -18,7 +18,24 @@ body{
     width:520px;
     float:right;
     margin: 10px;
+    
 }
+
+.main-section a  {
+   
+    text-decoration:  none;
+    font-weight:      bold;
+    color: black;
+} 
+
+.main-section a:active  {
+    /* Applies to activated links */
+    text-decoration:  none;
+    font-weight:      bold;
+    background-color: black;
+    color: white;
+} 
+
 
 .sidebar{
     position:fixed;
@@ -38,7 +55,7 @@ body{
     text-align: center;
 }
 
-.sidebar ul a:hover{
+ul a:hover{
     background-color: #555;
     color: white;
 }
