@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>These are the courses I have taken in SFU, I kept my notes here </h2>
+    <h2>These are some of the courses I have taken in SFU</h2>
+    I kept my notes here 
     <ul>
-    {% for course in courses %}
-        <li>
-            <a href= "{{ url_for('course', name=course.path.replace('courses/', '')) }}">
-                {{course.title}} ({{course.code}}) 
-            </a>
 
+    {% for group in courses|groupby('semester') %}
+        <b>{{group.grouper}}</b>
+        
+        {% for course in group.list %}
+        <li>
+        <a href= "{{ url_for('course', name=course.path.replace('courses/', '')) }}">
+            {{course.title}} ({{course.code}}) 
+        </a>
         </li>
-    {% else %}
-        <li>No stuff </li>
+        {% endfor %}    
     {% endfor %}
+
     </ul>
 {% endblock content %}

@@ -1,6 +1,6 @@
 title: "Discrete Math II"
 date: 2017-03-01
-semester: "Winter 2017"
+semester: "Spring 2017"
 code: "MACM 201"
 
 ## MACM 201 Discrete Math II Winter 2017
