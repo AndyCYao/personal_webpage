@@ -5,7 +5,7 @@
     I kept my notes here 
     <ul>
 
-    {% for group in courses|groupby('semester') %}
+    {% for group in courses|groupby('semester') | reverse %}
         <b>{{group.grouper}}</b>
         
         {% for course in group.list %}
