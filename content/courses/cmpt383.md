@@ -36,3 +36,20 @@ __Compiled vs Interpretted__
 Compiled programs (C, Fortran) are very efficient, compilers can find errors before program is run, and it can do static analysis (checking something against the soruce code)
 
 Interpretted programs (like Python, LISP) are good for fast development, allow codes to be created on the fly, but it is slower than compiled codes
+
+__Why use Go__
+
+Developed at Google, a way to replace C++ for writing server, the developers thought C++ took too long to compile.
+
+Go compiles fast, comparable to interpret languages.
+
+__Concurrency Support__ has “go routines” that are lightweight processes to handle concurrency tasks. 
+
+__No Exceptions__ Go relies on explicit error codes return from functions. Whereas error handling in C++, java, leads to convoluted code that treats too many situations as error. Go forces you to explicitly deal with error. (No error you would return nil)
+
+__Lightweight typing__ Go lets you leave off the type, but is still statically typed
+
+
+__Novel use of interface__ Go does not have classes,but still object oriented by introducing interface 
+
+__Closure__ allows passing functions (lambda functions) 
