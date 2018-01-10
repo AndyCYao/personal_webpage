@@ -52,4 +52,54 @@ __Lightweight typing__ Go lets you leave off the type, but is still statically t
 
 __Novel use of interface__ Go does not have classes,but still object oriented by introducing interface 
 
-__Closure__ allows passing functions (lambda functions) 
+__Closure__ allows passing functions (lambda functions)
+
+___other notes on  go___
+go has really modern set of libraries like __fmt__ thats relevant to web dev. 
+
+**go run** lets you compile and run in one step
+
+if variables or functions are Uppercase, then its public, (other languages have a explicit "public for these things)
+
+go has a built in formatter (**go fmt**) that conforms your code when you save
+
+the `:=` initializes and gives values to a variable , the type is inferred
+
+`name := ""`  
+
+the above is similar to `var name string`, `name = ""` 
+
+	:::code
+	var name string
+	fmt.Scanf("&s", &name) 
+	// needs an address of name because Scanf writes in value at the name address
+
+go uses `for` for both `for` and `while` like in other languages
+
+the for loop pattern is
+	
+	:::go
+	for i := 0l i < 10; i++ {
+		//do stuff
+	}
+	
+	//range loop
+	s := "some string"
+	for i,c := range s{
+		//do stuff
+		fmt.Printf("s[%v] = '%v'\n", i, c)	// the %v gets the unicode value, %c gets the char 
+	}
+	
+the go compiler says its an error if a variable is declared but not used, the aim is to make things practical by taking out superfluous variables
+
+because of this, the `_` is a blank variable in go, it allows the compiler to run if you dont care about a declared variable. 
+
+__array__ is immutable in Go, problem is the length is part of the type.
+
+__slice__ is a dynamic array , builds ontop of an array
+
+`var sl []int = []int{1,2,3}` gives starting values to the sl slice
+
+alternatively `sl := []int{1,2,3}`
+
+
