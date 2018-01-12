@@ -43,7 +43,7 @@ Developed at Google, a way to replace C++ for writing server, the developers tho
 
 Go compiles fast, comparable to interpret languages.
 
-__Concurrency Support__ has “go routines” that are lightweight processes to handle concurrency tasks. 
+__Concurrency Support__ has “Go routines” that are lightweight processes to handle concurrency tasks. 
 
 __No Exceptions__ Go relies on explicit error codes return from functions. Whereas error handling in C++, java, leads to convoluted code that treats too many situations as error. Go forces you to explicitly deal with error. (No error you would return nil)
 
@@ -54,14 +54,14 @@ __Novel use of interface__ Go does not have classes,but still object oriented by
 
 __Closure__ allows passing functions (lambda functions)
 
-___other notes on  go___
-go has really modern set of libraries like __fmt__ thats relevant to web dev. 
+___other notes on  Go___
+Go has really modern set of libraries like __fmt__ thats relevant to web dev. 
 
-**go run** lets you compile and run in one step
+**Go run** lets you compile and run in one step
 
 if variables or functions are Uppercase, then its public, (other languages have a explicit "public for these things)
 
-go has a built in formatter (**go fmt**) that conforms your code when you save
+Go has a built in formatter (**Go fmt**) that conforms your code when you save
 
 the `:=` initializes and gives values to a variable , the type is inferred
 
@@ -74,11 +74,11 @@ the above is similar to `var name string`, `name = ""`
 	fmt.Scanf("&s", &name) 
 	// needs an address of name because Scanf writes in value at the name address
 
-go uses `for` for both `for` and `while` like in other languages
+Go uses `for` for both `for` and `while` like in other languages
 
 the for loop pattern is
 	
-	:::go
+	:::Go
 	for i := 0l i < 10; i++ {
 		//do stuff
 	}
@@ -90,9 +90,9 @@ the for loop pattern is
 		fmt.Printf("s[%v] = '%v'\n", i, c)	// the %v gets the unicode value, %c gets the char 
 	}
 	
-the go compiler says its an error if a variable is declared but not used, the aim is to make things practical by taking out superfluous variables
+the Go compiler says its an error if a variable is declared but not used, the aim is to make things practical by taking out superfluous variables
 
-because of this, the `_` is a blank variable in go, it allows the compiler to run if you dont care about a declared variable. 
+because of this, the `_` is a blank variable in Go, it allows the compiler to run if you dont care about a declared variable. 
 
 __array__ is immutable in Go, problem is the length is part of the type.
 
@@ -102,4 +102,14 @@ __slice__ is a dynamic array , builds ontop of an array
 
 alternatively `sl := []int{1,2,3}`
 
+we can use the builtin keywords `append` and `make` to generate slices
 
+__map__ is declared like `var notes map[type of key]type of value` the string is the type of the key, and int value
+
+Go returns a value 0 if a key is not there in the map. different from how other languages does it. 
+
+`panic` is for error checking, and panic immediately ends the program 
+
+Go didn't add `destructors`, instead, the `defer` keyword allows statements to run after function ends, effectively Go programmers adds `deferobject.close()`
+
+ 
