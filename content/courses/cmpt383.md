@@ -104,7 +104,7 @@ alternatively `sl := []int{1,2,3}`
 
 we can use the builtin keywords `append` and `make` to generate slices
 
-__map__ is declared like `var notes map[type of key]type of value` the string is the type of the key, and int value
+__map__ is declared like `var notes map[type of key] type of value` the string is the type of the key, and int value
 
 Go returns a value 0 if a key is not there in the map. different from how other languages does it. 
 
@@ -112,4 +112,39 @@ Go returns a value 0 if a key is not there in the map. different from how other 
 
 Go didn't add `destructors`, instead, the `defer` keyword allows statements to run after function ends, effectively Go programmers adds `deferobject.close()`
 
- 
+--
+
+Go does not have inheritence, instead, it has concept of embed. so if structA  has structB inside, and structC. StructA is of a separate type than structB and structC.
+
+
+need to understand how Go methods and functions interact with __method sets__ 
+
+in __Go__, some key words are bound at language design time, and  can't be unbound, like __For loop__ 
+
+There are two binding time
+
+__Compile Time Binding (Static Binding)__ vs __Runtime Binding (Dynamic Binding)__
+
+different languages decide on the binding differently, runtime binding gives more flexibility, while compile time binding lets you find mistakes much faster.
+
+Go, C++, Java, Haskell -> are all compiled time binding  languages,
+
+Javascript, Python, Ruby, Scheme/Lisp -> are all binding done at runtime. 
+
+the bindings are not all distinct like this, all languages implement a mix of both
+
+
+#### Memory Allocation
+
+Static  -> compile time - eg. global variable , the original Fortran only had static memory variables. but problem is, when we start using functions, we want functions to have their own local variables. so static allocated programs had a hard time accomodating for local variables. which leads to... 
+
+Stack (or call stack)  -> is created in run time, each stack contains __stack frame__ that stores the local variables at the current function.and automatically pop when the function exits.   
+
+
+Heap ( dynamic) 
+
+
+__Summary Of Go__
+easy language for getting a job, write a web server etc. 
+
+
