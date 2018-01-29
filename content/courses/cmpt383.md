@@ -147,4 +147,40 @@ Heap ( dynamic)
 __Summary Of Go__
 easy language for getting a job, write a web server etc. 
 
+##Scheme 
+
+in this course we will not use loops even though Scheme has loops built in, instead, we will use recursion
+
+
+
+distinctions between symbols and strings. elements such as `'(my dog has fleas)` , here there are 4 elements in this list, and all of them are **symbols** not strings.
+
+`(min 3 1)` evalutes to 1
+
+`(min 3 1)`  evalutes to `(min 3 1)`
+
+###List Processing
+In scheme, we can think of lists like stacks, and think `car` as peek(), and `cdr` as pop the first, and take the rest
+
+
+`(car '(+ 1 2 3) )` would return an error,
+`(car '(+ 1 2 3) )` would return the + sign.
+
+
+The and and or are both short circuit operator that stop when one of them is true. This is different than other languages.
+
+The cond  statement is a one big switch case in scheme. 
+
+
+:::code
+	(define len ;; this is taught in class
+		(lambda (lst)
+			(cond
+				((null? lst) 0) ;; base case
+				(else 
+					(+ 1 (len (cdr lst) ) ) )
+			)
+		)
+	)
+:::
 
