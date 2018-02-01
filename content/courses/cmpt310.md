@@ -3,8 +3,8 @@ date: 2018-01-05
 code: "CMPT 310"
 semester: "Spring 2018"
 
-
-Pancake Flipping Robot -> close world, only one action 
+Taught by Professor Oliver Schulte
+ 
 
 AI falls in four categories
 
@@ -33,6 +33,7 @@ so acting does not always require thinking
 	- insects, Siri, Watson? 
 
 what are the advantages of thinking? why thinking animal have evolved? 
+
 - so we can deal with new situations. (maybe stimulus is preprogrammed) so flexibility
 - planning vs reacting 
 - inventions
@@ -65,16 +66,18 @@ stands for performance measure environment, actuator, sensor
 this defines the task for the agent. 
 
 in a Interactive Spanish Tutor
+
 1. The Performant Measurement - student success, 
 3. Environment  - the set of students
 3. The Actuator - the lessons themselves
 4. Sensor      - the keyboard, speakers. 
 
 Self Driving Car
+
 1. Performance Measure - Safety record, traffice rules, on time performance, 
 2. Environment - the road 
-3. Actuator - 
-4. Sensor -  
+3. Actuator - wheels, horn
+4. Sensor -  cameras, microphone, etc
 
 ### Environment Types
 - Fully Observable (vs partially observable) does the agent know everything relevant for its environment (chess robot knows all of its playing area), if not a robot has to make a decision, using probability
@@ -109,6 +112,8 @@ Goals are not always enough, - many actions sequence gets car to destination, bu
 
 ### What is control theory:
 about how robots control themself, such as using sensors like thermostat,
+
+---
 
 ## Game Theory
 
