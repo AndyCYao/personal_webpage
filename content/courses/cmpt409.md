@@ -37,6 +37,8 @@ if we don't know the size of the subsets, and we want to find the sizes, then we
 
 path compression refers to trimming the subset tree so that if d -> b -> a and a is the parent, then just have d -> a.
 
+--- 
+
 __Augmenting Data Structures__
 
 we have a BST, and want to efficiently count the number of elements < x or . we could go through all vertices, but that is slow O(n). 
@@ -53,11 +55,13 @@ with adjacency matrix, we have an advantage of accesing an edge directly (wherea
 
 but with A.Matrix its not advantangeous if the graph is sparse. 
 
-### Analyzing Running Time ### 
+### Analyzing Running Time
 
 in a competition , if N <= 100 and you have an O(N^3) you should fix the bug in the algo by finding the edge cases because N is quite small
 
 but if N <= 1000,000, then you can't use O(N^3)
+
+---
 
 __Data structure for the poker hand question__
 
