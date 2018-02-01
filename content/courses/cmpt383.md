@@ -1,4 +1,4 @@
-title: "CMPT 383 Comparative Programming Language"
+title: "Comparative Programming Language"
 date: 2018-01-05
 code: "CMPT 383"
 semester: "Spring 2018"
@@ -37,7 +37,9 @@ Compiled programs (C, Fortran) are very efficient, compilers can find errors bef
 
 Interpretted programs (like Python, LISP) are good for fast development, allow codes to be created on the fly, but it is slower than compiled codes
 
-__Why use Go__
+---
+
+### Golang
 
 Developed at Google, a way to replace C++ for writing server, the developers thought C++ took too long to compile.
 
@@ -54,14 +56,14 @@ __Novel use of interface__ Go does not have classes,but still object oriented by
 
 __Closure__ allows passing functions (lambda functions)
 
-___other notes on  Go___
 Go has really modern set of libraries like __fmt__ thats relevant to web dev. 
 
 **Go run** lets you compile and run in one step
 
-if variables or functions are Uppercase, then its public, (other languages have a explicit "public for these things)
+if variables or functions are Uppercase, then its public, (other languages have a explicit `public` for these things)
 
 Go has a built in formatter (**Go fmt**) that conforms your code when you save
+
 
 the `:=` initializes and gives values to a variable , the type is inferred
 
@@ -69,7 +71,7 @@ the `:=` initializes and gives values to a variable , the type is inferred
 
 the above is similar to `var name string`, `name = ""` 
 
-	:::code
+	:::go
 	var name string
 	fmt.Scanf("&s", &name) 
 	// needs an address of name because Scanf writes in value at the name address
@@ -92,7 +94,7 @@ the for loop pattern is
 	
 the Go compiler says its an error if a variable is declared but not used, the aim is to make things practical by taking out superfluous variables
 
-because of this, the `_` is a blank variable in Go, it allows the compiler to run if you dont care about a declared variable. 
+because of this, the `_` keyword is a blank variable in Go, it allows the compiler to run if you dont care about the declared variable. 
 
 __array__ is immutable in Go, problem is the length is part of the type.
 
@@ -112,16 +114,14 @@ Go returns a value 0 if a key is not there in the map. different from how other 
 
 Go didn't add `destructors`, instead, the `defer` keyword allows statements to run after function ends, effectively Go programmers adds `deferobject.close()`
 
---
-
-Go does not have inheritence, instead, it has concept of embed. so if structA  has structB inside, and structC. StructA is of a separate type than structB and structC.
+Go does not have inheritence, instead, it has a concept of embed. so if structA  has structB inside, and structC. StructA is of a separate type than structB and structC.
 
 
 need to understand how Go methods and functions interact with __method sets__ 
 
 in __Go__, some key words are bound at language design time, and  can't be unbound, like __For loop__ 
 
-There are two binding time
+--- 
 
 __Compile Time Binding (Static Binding)__ vs __Runtime Binding (Dynamic Binding)__
 
@@ -146,6 +146,8 @@ Heap ( dynamic)
 
 __Summary Of Go__
 easy language for getting a job, write a web server etc. 
+
+--- 
 
 ##Scheme 
 
@@ -172,7 +174,7 @@ The and and or are both short circuit operator that stop when one of them is tru
 The cond  statement is a one big switch case in scheme. 
 
 
-:::code
+	:::scheme
 	(define len ;; this is taught in class
 		(lambda (lst)
 			(cond
@@ -182,5 +184,4 @@ The cond  statement is a one big switch case in scheme.
 			)
 		)
 	)
-:::
 
