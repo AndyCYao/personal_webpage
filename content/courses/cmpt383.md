@@ -151,28 +151,36 @@ easy language for getting a job, write a web server etc.
 
 ##Scheme 
 
-in this course we will not use loops even though Scheme has loops built in, instead, we will use recursion
+Though Scheme has `loop` feature, the course only studies recursion.
 
+Distinctions among symbols, variables, functions and lists:
+- `x`  : variable x
+- `'x` : symbol x
+- `(x parameter1 parameter 2)` : function x with 2 parameters
+- `'(my dog has fleas)`: a list of 4 elements which are symbols
 
-
-distinctions between symbols and strings. elements such as `'(my dog has fleas)` , here there are 4 elements in this list, and all of them are **symbols** not strings.
+Example:
 
 `(min 3 1)` evalutes to 1
 
-`(min 3 1)`  evalutes to `(min 3 1)`
+`'(min 3 1)`  evalutes to `(min 3 1)`
 
 ###List Processing
-In scheme, we can think of lists like stacks, and think `car` as peek(), and `cdr` as pop the first, and take the rest
 
+In scheme, we can think of lists like stacks with main operations: `car` as peek() that returns the first element, and `cdr` as pop() that returns the rest of the list.
 
-`(car '(+ 1 2 3) )` would return an error,
-`(car '(+ 1 2 3) )` would return the + sign.
+Example:
+`(car '(+ 1 2 3) )` evaluates to '+' sign
 
+Note that '+' sign returned from the above example is not considered the addition operator but just a symbol. Thus, using the returned '+' to feed a calculation pipe line will cause errors:
 
-The and and or are both short circuit operator that stop when one of them is true. This is different than other languages.
+`(+ 1 2)` evaluates 3
 
-The cond  statement is a one big switch case in scheme. 
+`((car '(+ 1 2 3)) 1 2)` causes errors
 
+Scheme uses the lazy evaluation technique in evaluating logic operations `and` and `or`. Scheme stops evaluating `and` at the first found `false` argument; and stops evaluating `or` at the first found `true` argument. A similar fearture can be seen in C.
+
+Scheme uses `cond` or `if` to branch the flow.
 
 	:::scheme
 	(define len ;; this is taught in class
