@@ -1,20 +1,16 @@
 title: Implicit Recommender System
 date: 2017-09-21
 
-I made a recommender system in my co-op term. I kept the model but modified it to use something other than my work's dataset. 
+I made a recommender system in my co-op term. I kept the model but modified it to use something other than my work's dataset. we are using implicit data to create a recommender system. The idea is that the more times a user have purchased something, the more confident we are that they like this item. We will use this as a metric.
 
 A Flask app of the system in action [here](/recommender)
 
-```python
+```
 import pandas as pd
 import scipy.sparse as sparse
 import numpy as np
 from scipy.sparse.linalg import spsolve
 ```
-
-# Implicit Recommender System
-
-Like the title says, we are using implicit data to create a recommender system. The idea is that the more times a user have purchased something, the more confident we are that they like this item. We will use this as a metric.
 
 ## Cleaning the Data
 
@@ -330,9 +326,9 @@ products = list(grouped_purchased.StockCode.unique()) # get unique products
 quantity = list(grouped_purchased.Quantity) # all of our purchases
 
 rows = grouped_purchased.CustomerID.astype('category', categories = customers).cat.codes
-# get the associated row indices 
+### get the associated row indices 
 cols = grouped_purchased.StockCode.astype('category', categories = products).cat.codes
-# get the associated column dices 
+### get the associated column dices 
 purchases_sparse = sparse.csr_matrix((quantity, (rows,cols)), shape=(len(customers), len(products)))
 ```
 
@@ -358,7 +354,7 @@ To set up the training set, we will mask a certain percentage reader / document 
 
 
 ```python
-# This portion we will now figure out the training set and testing set
+We will now figure out the training set and testing set
 import random
 def make_train(ratings, pct_test = 0.2):
     '''
@@ -405,7 +401,7 @@ def make_train(ratings, pct_test = 0.2):
 product_train, product_test, product_users_altered = make_train(purchases_sparse, pct_test= 0.2)
 ```
 
-# Alternating Least Square (ALS)
+### Alternating Least Square (ALS)
  
 ALS is an optimization technique through matrix factorization. It finds the latent factors between users, and items.
  
@@ -415,7 +411,7 @@ preferences are assumed to be the inner product $ p_{ui} = x^t_uy_i $ , where $ 
  
 [Link to the paper by Hu, Koren, and Volinksy](http://yifanhu.net/PUB/cf.pdf)
  
-## Parameters
+### Parameters
  
 1. **alpha** - this is the rate of increasing our confidence in a $ r_{ui} $ pair
 2. **factor** - the number of latent factors, default is 20
@@ -423,7 +419,7 @@ preferences are assumed to be the inner product $ p_{ui} = x^t_uy_i $ , where $ 
 4. **iterations** - number of iterations to run the ALS optimization. Default is 50
 
 
-## Intuition
+### Intuition
 
 In collaborative filtering, there are two types of models, one is the nearst neigbhour model, where we use the ratings of "most similar" users to make decisions. 
 
@@ -433,7 +429,7 @@ LFA is inspired by Principal Componet Analysis (PCA). PCA tries to explain what 
 
 If we can figure out the underlying factor determing that influences the rates. We can use it to predict any ratings for a product by a user. 
 
-### How does LFA work? 
+#### How does LFA work? 
 
 we decompose the user / item matrix to two matrices, one is $ U $ user describe by some underlying factors, and the other is product matrix , describe by the same factors. 
 
@@ -446,7 +442,7 @@ where each user has a set of features they like, and each document has a set of 
 
 
 
-```python
+:::python
 # using Ben Frederickson's algo. https://github.com/benfred/implicit
 import implicit
 alpha = 15
@@ -454,7 +450,7 @@ user_vecs, item_vecs = implicit.alternating_least_squares((product_train*alpha).
                                                            factors = 20,
                                                            regularization = 0.1,
                                                            iterations = 50)
-```
+:::
 
     No handlers could be found for logger "implicit"
 
@@ -476,7 +472,7 @@ user_vecs[0, :].dot(item_vecs).toarray()[0,:5]
     ValueError: shapes (20,) and (3664,20) not aligned: 20 (dim 0) != 3664 (dim 0)
 
 
-# Evaluating the Recommender System
+## Evaluating the Recommender System
  
  
 We have to see if the order of recommendations given for each user matches the documents they have read. The way to calculate this is to use the [Receiver Operating Characteristics](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) curve.
@@ -700,7 +696,7 @@ def rec_items(customer_id, mf_train, user_vecs, item_vecs, customer_list, item_l
     return final_frame[['StockCode', 'Description']] # Switch order of columns around
 ```
 
-# Testing this out
+## Testing this out
 
 We test this out, using customer #12390 as an example
 
@@ -996,7 +992,7 @@ get_items_purchased(12390, product_train, customers_arr, products_arr, item_look
 Latent Factor Analysis needs offline update, we have to decompose the rating matrix offline, and so new recommendations are based on matrices updated to a point. 
 
 
-# Reference:
+### Reference:
 A Gentle Guide to Recommender System https://jessesw.com/Rec-System/
 
 Ben Frederickson Implicit Library https://github.com/benfred/implicit

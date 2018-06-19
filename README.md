@@ -28,5 +28,3 @@ The blog.py lets you do 3 things
 `python blog.py build` builds the static website using Python Flask's `freeze`. The website is stored in the `build` folder.
 
 `python blog.py deploy` deploys the website based on the configurations earlier.
-
-
