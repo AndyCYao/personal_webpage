@@ -5,7 +5,7 @@ For my last semester in school, I am taking a special research project working w
 
 Our first project has just finished. Our client was a Vancouver dance company that was looking to show an augmented reality (AR) performance by one of their dancer. The dance would be activated by opening the app, and pointing the user's phone camera on the company logo.
 
-!["This is our result after two weeks"](/static/images/CDM1_intro.gif)
+!["This is our result after two weeks"](/static/images/CDM1_Intro.gif)
 
 ## Journal
 
