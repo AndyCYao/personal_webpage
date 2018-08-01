@@ -7,17 +7,18 @@
     {% for post in posts | reverse %}
         <li>
             <b><a href= "{{ url_for('post', name=post.path.replace('posts/', '')) }}"></b>
-                <span itemprop = "name">{{post.title}}</span>
-            </a>  <small><time datetime="{{ post.date }}">{{ post.date}}</time> </small>  
-            <p><q itemprop="description">
+                <span itemprop = "name">{{post.title}}</span>  
+            </a> | <small><time datetime="{{ post.date }}">{{ post.date}}</time> </small>  
+            <p itemprop="description">
                 {%- if post.meta.summary and post.meta.summary|striptags|trim %}
                 {{- post.summary|trim }}
                 {%- elif post.html|striptags|trim -%}
                     {{- post.html|striptags|trim|truncate(135) }}
                 {%- endif -%}
-            </q></p>
-           
-
+                {%- if post.meta.image %}
+                    <img src="{{- post.image }}">
+                {%- endif -%}
+            </p>
         </li>
     {% else %}
         <li>No stuff.</li>

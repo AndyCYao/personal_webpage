@@ -1,5 +1,7 @@
 title: AR Dancer
 date: 2018-06-10
+summary: Augmented Reality Dancer iPhone app 
+image: /static/images/CDM1_Intro.gif
 
 For my last semester in school, I am taking a special research project working with the master students at [Center of Digital Media](https://thecdm.ca/)
 
