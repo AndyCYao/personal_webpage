@@ -147,9 +147,9 @@ Learn about merkel DAG and merkel Tree
 Public Key Encryption
 We learned about RSA, Diffie-Hellman, and Elliptic Curve public key algorithm.
 
-`![diffie-hellman](/static/images/diffie-hellman-key-exchange.png)`
+![diffie-hellman](/static/images/diffie-hellman-key-exchange.png)
 
-<img src="/static/images/diffie-hellman-key-exchange.png"  max-width="100%" >
+<!-- <img src="/static/images/diffie-hellman-key-exchange.png"  max-width="100%" > -->
 
 
 
@@ -209,10 +209,44 @@ Ethereum DApps.
 
 any of the new coins are just ethereum smart contracts. 
 
-
 __Ethereum Virtual Machine (EVM)__ every full node runs an EVM 
 
 Gas = StartGas - 5 * len(DATA) (subtract 5 gas per byte in txt data)
+
+
+#### Smart Contract
+
+You can think of smart contract as "objects" in OOP. one of the Op code in ethereum is "delegate call", which allows you to reference other smart contracts. 
+
+You can look for smart contract library by looking for main net address. 
+
+The main programming langauge for smart contract is __solidity__ , is contract oriented, has inheritance, has inline assembly. 
+
+as smart contract developers, we dont get to control the order of execution in the block. that's up to the miner. 
+
+if a smart contract is design like functional programming, as in it doesn't modify any state, then this does not have to be commit to the block , so saves on gas. 
+
+--- 
+### Aug 14 2018 Monday William Phan
+EVM is deterministic, so it is hard to get randomness in the system. 
+
+Look into profitTrailer
+
+---
+### Aug 15 2018 Tuesday William Phan
+To check if a public address is a smart contract instead of a real perosn , check the code field of the transaction. 
+
+counterparty risk - a chance that the person might not uphold the contract, 
+
+oraclized - allows randomize mechanism
+
+__ERC 721__ proposes a creation of non-fungible units, like cryptokitty
+
+#### Ethernaut Solidity Static Methods
+
+* `GetBalance(address)` returns the balance of the contract.
+* `contract.sendTransaction()` sends ethers to a contract
+* `contract.abi` to see the list of available functions for the contract
 
 #### Ethereum Notes:
 1 ETH 
@@ -237,11 +271,13 @@ Requirement for building blockchain app
 - the product has to solve something current solutions isn’t solving.
 - the users can’t expect solutions to be instantaneous, since blockchain can’t resolve things as fast as say visa/mastercard
 - (a) inter-company audit trails, (b) provenance tracking, and (c) lightweight financial systems. 
+- ERC 20 tokens 
 
 Ideas
 - Maersk announced a blockchain based bill of lading proof of concept.
 - Augur prediction helper using data from sports betting sites.
 - ping smart contracts every 256 blocks, to make sure they are still active. 
+- solidity gas calculator in every smart contract during code building. 
 
 
 TA - Lib - Technical analysis for python 
