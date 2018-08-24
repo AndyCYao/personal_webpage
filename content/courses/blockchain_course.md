@@ -242,11 +242,135 @@ oraclized - allows randomize mechanism
 
 __ERC 721__ proposes a creation of non-fungible units, like cryptokitty
 
-#### Ethernaut Solidity Static Methods
+
+--- 
+### Aug 16 2018 
+
+* Layer 1 - requires global consensus, ethereum, bitcoin etc.
+    
+* Layer 2 systems are "off chain",  builds off of on chain Layer 1 , like Lightning network, Raiden,
+    - Lightning network allows everyone to send money to each other, as long as they are in the same network. 
+    - but miners gain nothing from payment channels adoption
+    - lightning node may be considered by FinCEN as a money transmitter
+
+
+3 Scaling solution - 
+
+1. centralize database (coin base, credit card payment processor) 
+    - custodial risk
+    - con  custodial risk.
+
+2. payment channcel (starbucks giftcard model)
+    - need to have channel open by both party
+    
+
+3. sidechains
+    - creating blockchain ontop of blockchain. 
+    - Loom network -> no ICO, no whitepaper. 
+
+
+
+Guest Speaker Today - Mimik - Decentralize Cloud. 
+    Faye Arjamandi - 
+    
+- turn cloud by adding processing from the devices level. 
+- lots of surplus processing from devices unused. 
+- end to end SDK kit, use it to develop applications 
+
+---
+### Aug 17th 2018 - Privacy
+zkSNARKS -> zero knowledge proofs
+
+ring signature -> masks senders address. 
+
+Byzantium block means any after blcok has EVM byte codes precompiled. 
+
+ethereum supports zkSNARKS things. 
+
+Two main competitors right now in private coins, `ZCash` which uses zkSnark and `Monero` which uses ring signatures to mask signature address.
+
+
+
+
+Segegrated networks for bitcoin allows for lightning networks. 
+
+---
+### Aug 20th 2018 - Vincent
+1. Run your company before you run a token
+
+#### Ethernaut Solidity Tips
 
 * `GetBalance(address)` returns the balance of the contract.
 * `contract.sendTransaction()` sends ethers to a contract
 * `contract.abi` to see the list of available functions for the contract
+* `web3.sha3(methodname)` to get the address of the method
+* solidity currently does not enforce view and constant and pure functions to not modify state. So they should not read state but they can. 
+
+### Aug 21st 2018 - Vincent
+__Token Economics__
+
+there are 3 types of tokens
+
+1. Currencies / Commodities
+    - Storer of value, stable coins, like bitcoin
+2. Utility Token
+    - coupons, governance tokens, work tokens
+3. Security Token
+    - considered securities, so may have regulations, anything that provides dividend. Zook coin. 
+
+Questions to ask about token mechanic. 
+1. what is the purpose
+2. how will the token assist the project infrastructure
+3. who is using the token, 
+4. who is holding the token to support the network.
+5. does the token grant governance action. 
+6. is this used to raise capital from investors?
+
+__Token velocity__
+
+Velocity = Total Transaction Volume / Average Network Value
+
+_DCTRL community commons:_
+
+### Aug 22nd 2018 - Vincent
+
+Some current blockchain projects include 
+
+sliver.tv , stream with betting element using proprietary `theta` token. 
+
+dappradar.com , checks the ethereum usage 
+
+### Aug 23rd 2018 - Reza
+
+Binance and Bitfinex are centralized exchanges. Quadriga deals in canadian dollars. 
+
+`Forwards` are contracts that never expires. 
+
+`CoinSchedule` gives ICO schedules 
+
+limit orders are 0.25% per trade. in bitmex
+
+BTC Futures 
+
+Whales Wisdom.com
+
+### Hyperledger
+- open sourced community to build blockchain related usecases. 
+- permissioned ledger system (as opposed to bitcoin / ethereum is public.)
+- diff. than ethereum because hyperledger is more personalize per industry. whereas ethereum runs a general code.
+
+There are a few roles in a hyper ledger
+1. Committer
+    * appends validated transaction to their specific ledger
+
+2. Endorser
+    * Simulating transaction
+    * prevent unstable and non deterministic transactions
+
+3. Consenter
+    * network consesus service, decides if a transaction should be added to a ledger. 
+
+
 
 #### Ethereum Notes:
 1 ETH 
@@ -265,8 +389,6 @@ Questions to ask
 
 Blockchain debt collector 
 
-email kenneth.odoh@gmail.com homework.
-
 Requirement for building blockchain app
 - the product has to solve something current solutions isn’t solving.
 - the users can’t expect solutions to be instantaneous, since blockchain can’t resolve things as fast as say visa/mastercard
@@ -278,6 +400,7 @@ Ideas
 - Augur prediction helper using data from sports betting sites.
 - ping smart contracts every 256 blocks, to make sure they are still active. 
 - solidity gas calculator in every smart contract during code building. 
+- Raiden raspberry pi lightning network. (using lighting protocol)
 
 
 TA - Lib - Technical analysis for python 
