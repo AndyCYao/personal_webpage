@@ -4,6 +4,7 @@ semester: "Summer 2018"
 code: "blockchain"
 
 ### Notes from 7Gate Blockchain Bootcamp Aug - Sept 2018
+
 ---
 ### Jul 31st 2018
 ethernet addresses are public
@@ -340,7 +341,7 @@ sliver.tv , stream with betting element using proprietary `theta` token.
 
 dappradar.com , checks the ethereum usage 
 
-### Aug 23rd 2018 - Reza
+### Aug 23rd 2018 - Reza Dehghani
 
 Binance and Bitfinex are centralized exchanges. Quadriga deals in canadian dollars. 
 
@@ -352,20 +353,33 @@ limit orders are 0.25% per trade. in bitmex
 
 BTC Futures 
 
-Whales Wisdom.com
+WhalesWisdom.com
+
+TA - Lib  colabratory 
+
+TradingView as back testing using the pine test
+
+`Catalyst` - > BTC Python algo trading
+
+`Zipline` -> python Quantopia framework 
+
+### Aug 24th 2018 - Reza Dehghani
+
+you can look at the CME bitcoin futures to see the volume of long and short futures. The bigger the volume, the more likely bitcoin will go for that direction. 
+
 
 ### Hyperledger
 - open sourced community to build blockchain related usecases. 
-- permissioned ledger system (as opposed to bitcoin / ethereum is public.)
+- permissioned ledger system (as opposed to bitcoin / ethereum is public.) Transaction processing is done by predefined users.
 - diff. than ethereum because hyperledger is more personalize per industry. whereas ethereum runs a general code.
-
+- runs a consensus algorithm call "Practical Byzantine Fault Tolerance", new block is dadded when 2/3 of all validating peers submit the same response. 
 There are a few roles in a hyper ledger
-1. Committer
+1. Committer 
     * appends validated transaction to their specific ledger
 
-2. Endorser
+2. Endorser - a type of peer
     * Simulating transaction
-    * prevent unstable and non deterministic transactions
+    * verifies that transactions are correct
 
 3. Consenter
     * network consesus service, decides if a transaction should be added to a ledger. 

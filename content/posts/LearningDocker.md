@@ -1,6 +1,6 @@
 title: Docker Notes
 date: 2018-07-20
-summary: some helpful docker and docker-compose
+summary: some helpful notes on docker and docker-compose
 
 
 ##### Docker Tips

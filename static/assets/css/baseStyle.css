@@ -1,7 +1,7 @@
 /* Style the main content and the sidebar */
 body{
     background-color: #fefefe;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-family:  -apple-system,  "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;;
     font-size: 19px;
     line-height: 28px;
     color: #333334;
@@ -83,6 +83,9 @@ blockquote {
   padding-left: 14px;
 }
 
+img {
+    max-width: 100%;
+}
 
 /* This simple media query makes the column layout
    linear on smaller screens */
