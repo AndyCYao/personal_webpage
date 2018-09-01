@@ -111,6 +111,10 @@ img {
         position: relative;
     }
 
+    .sidebar ul {
+        padding-left: 0px;
+    }
+
     .sidebar ul a{
         text-align: left;
         display: float;
