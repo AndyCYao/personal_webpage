@@ -3,7 +3,7 @@ date: 2017-03-01
 semester: "Spring 2017"
 code: "CMPT 354"
 
-## CMPT 354 Database Management Winter 2017
+### CMPT 354 Database Management Winter 2017
 
 ### ER Diagrams and Relational Diagram 
 *ER Diagrams* are for concepts, it is used for abstract grouping of entities and relationships

@@ -6,3 +6,4 @@ Jinja2==2.6
 Markdown==2.6.7
 configparser==3.5.0
 Fabric==1.14.0
+Pygments == 2.2.0

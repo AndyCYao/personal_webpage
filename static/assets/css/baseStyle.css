@@ -7,6 +7,11 @@ body{
     color: #333334;
 }
 
+div.codehilite {
+    padding: 1px 20px 1px 20px;
+    font-size: 16px;
+    overflow: auto;
+}
 
 .container{
     width:900px;
