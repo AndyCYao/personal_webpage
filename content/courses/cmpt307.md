@@ -2,9 +2,10 @@ title: "Data Structure and Algorithm II"
 date: 2017-09-16
 semester: "Fall 2017"
 code: "CMPT 307"
-# On Gale Shapely Algorithm (G.S)
 
-## Terminologies
+### On Gale Shapely Algorithm (G.S)
+
+#### Terminologies
 *Stable Pair* - A pair where one of the two, or both, are happy. this means either both prefers their match , or (one prefers their match, and the other doesn't) . so the opposite of this is unstable match.  
 
 *Unstable Pair* - both members are unhappy, they both prefer someone else than their current match. __key idea is that both people in this pair can improve by breaking this pair__
@@ -65,33 +66,32 @@ Direct Proof -
 
 
 #### Proof - All Execution of GS yields man-optimal match
-	:::code 
-	Claiming there is a man optimal match S that 
-	Y - A 
-	Z - B
-		
-		
-	Proof by contradiction -
 
-1. suppose G.S created a non-man optimal match. as in, there is a man 'Y' pairs with valid partner woman 'B' . but its not his best partner. 
+`Claiming there is a man optimal match S that 
+	(Y - A)
+	(Z - B)`
+		
+#### Proof by contradiction -
 
-	:::code 
-	this means there is a stable match S* where men Y, Z and women A, B 
+1. suppose G.S created a non-man optimal match. There is a man 'Y' paired with valid partner woman 'B' . but B is not his best partner. this means there is a stable match S* where men Y, Z and women A, B 
 
 	Y - B 
+
 	Z - A 
 
 	and 
 
 	man Y's   preference - A > B
+
 	man Z's   preference - not known
+
 	woman A's preference - not known 
+
 	woman B's preference - not known
 
 
 2. Y is the first person to be rejected, since he prefers A over B , Y was rejected by A. This means lady A prefers her current partner than Y (if she didn't have a partner, she would of accept Y)
 
-	:::code 
 	woman A's preference - Z > Y
 
 
@@ -99,20 +99,17 @@ Direct Proof -
 
 3. Since Y is the first person to be rejected, that means Z has never been rejected. since Z is paired with A, this means he proposed to A as well.  
 
-	:::code 
 	man  Z's preference - A > B
 
 
 4. Here is the problem, Z would not have propose to B. Z is paired off with A before reaching B. thus S is not possible. and not a stable match.  
-
-man Y matches with woman A 
+	man Y matches with woman A 
 
 #### Proof - All Execution of GS yields Woman Pessimality
 This is saying the proposee is worst off than the proposer.
 
 Each Woman receives the *worst valid partner*
 	
-	:::code 
 	 Context:
 	 Preference:
 	 proposer:  
@@ -145,13 +142,15 @@ Each Woman receives the *worst valid partner*
 Yes, because G.S produces man (proposer) - optimal matches.
 And man-optimal match are subset of all stable matches
 
-# GRAPHS
+--- 
 
-## Terminologies
-Path	    - a sequence of nodes join by edges
-Simple Path - if all nodes are distinct
-Connected Graph - if for every pair of nodes, there is a path 
-Cycle 		- Same as Simple path, but start and end at the same node
+### GRAPHS
+
+#### Terminologies
+* Path	    - a sequence of nodes join by edges
+* Simple Path - if all nodes are distinct
+* Connected Graph - if for every pair of nodes, there is a path 
+* Cycle 		- Same as Simple path, but start and end at the same node
 
 
 ### Adjacency Matrix
@@ -159,7 +158,7 @@ Cycle 		- Same as Simple path, but start and end at the same node
 Graphs can be represented by a \\(n x n\\) adjacency matrix
 where n is number of nodes. if there is an edge between two nodes, there is a 1 on the matrix. otherwise 0.
 
-so takes \\(O(n^2)\\) space 
+so it takes \\(O(n^2)\\) space 
 
 ### Adjacency List 
 This is another way to represent a graph. It has a better way to find neighbors of each node. there is a n size list. each item in the list is a linked list of the neighbors that node has. so, each item is an edge to its neighbour.
@@ -168,13 +167,12 @@ Space is \\(theta(m+n)\\) where m is number of edges, and n is number of nodes
 
 say there are 3 nodes, and there are edges {(a,b), (b,c), (a,c)} then the adjacency list is 
 
-	:::code
 	node a:  -> b  > c
 	node b:  -> c
 	node c: 
 
 
-#### Properties
+### Properties
 
 AL. is good for sparse graphs, because there will be fewer linked lists. and we can approximate the space as {O(n)}
 
@@ -207,7 +205,7 @@ Another property of BFS tree is that if there is an edge between nodes \\((x,y)\
 
 
 ## Bipartite graph 
-short way to remember this is that if all nodes can be colored such that each edge has a blue node on one end and white on the other. 
+All nodes can be colored such that each edge has a blue node on one end and white on the other. 
 
 If a graph is bipartite, then there cannot be an odd length cycle. 
 
@@ -220,7 +218,7 @@ Exactly one of the following holde:
 
 2. an edge of G joins two nodes of the same layer, and G has odd-length cycle, so not bipartite
 
-### Directed Graphs
+## Directed Graphs
 ### Terminologies
 Mutually Reachable - if there is a directed path from node \\(u\\) to \\(v\\) and vice versa 
 
@@ -252,7 +250,7 @@ hence contradiction
 
 ### Topological Sort Given a DAG 
 the Topological Sort is just a DFS with an extra temporary stack.
-	::: code 
+	
 	Version 1 From GeeksForGeeks
 	instantiate a temp. stack 
 
@@ -265,24 +263,28 @@ the Topological Sort is just a DFS with an extra temporary stack.
 
 	pop / print the stack , this is the topological sort. 
 
-Version 2 From Class 
-Find a node v with no incoming edge and order it first 
-'Delete' v from graph G 
+__Version 2 From Class__
+
+1. Find a node v with no incoming edge and order it first 
+
+2. 'Delete' v from graph G 
 	Recursively Compute a topological ordering of G - {v}
 		append this order after v
+
+--- 
 
 ## Shortest Path Problems
 
 ### Dijkstra's Algorithm (DA)
-Greedy algorithm takes the best best choice with information available. and does not adjust it even if theres new information. Dijkstra's algo is greedy because it has an initial set S of shortest path, and every round, it adds to it given the info. at the time, but does not remove from S.
+Greedy algorithm takes the best choice with information available. and does not adjust it even if theres new information. Dijkstra's algo is greedy because it has an initial set S of shortest path, and every round, it adds to it given the info. at the time, but does not remove from S.
 
 This algorithm maintains the invariant that 
 
-for each node in S, d(u) is the length of the shortest path from root to u
+`for each node in S, d(u) is the length of the shortest path from root to u`
 
-*Proof Of Correctness*
+### Proof Of Correctness
 
-### Efficient Implementation of DA
+#### Efficient Implementation of DA
 1. Use a Min Priority Queue to the nodes not in S , organize by their distance. 
 2. explicity maintain each unexplore node's distance instead of computing the formula. 
 
@@ -321,6 +323,8 @@ the algorithm always maintains the invariant of
 ### General way to prove Kruskal and Prim algorithm 
 we can use the cycle and cut property to prove these two algorithm, and also the greedy algo algo. invariant 
 
+--- 
+
 ### Union Find Algo AKA Disjoint Set
 This D.S handles finding which element does a set belongs to quickly. It has two operations.
 
@@ -336,13 +340,13 @@ Kruskal Algorithm uses this D.S to detect cycles. If two nodes point to the same
 
 
 
-## Greedy Algorithm Interval Scheduling
-### Greedy Algorithm Template
+### Greedy Algorithm Interval Scheduling
+#### Greedy Algorithm Template
 1. Organize the jobs in some order, like Heaviest First, Earliest First, Shortest first, etc. note a priori its hard to tell 
 which one makes sense 
 2. Iterate through this list, and accept answer as it goes. 
 
-### Minimizing lateness 
+#### Minimizing lateness 
 Use Earliest Deadline First 
 \\(O(nlogn)\\) time for sorting
 
@@ -359,18 +363,13 @@ and in another scheduler it chose job y ahead of job x.
 	2. All other jobs except for x and y still have the same lateness
 	3. we must show that the greedy x + y is <= schedule o y+x
 
-	
-
-
-
-### Interval Partitioning
+#### Interval Partitioning
 We now have jobs, and resources, such as lectures and rooms. we want to minimize the number of rooms and schedule all the lectures. 
 
 We can resolve this using greedy algo again. 
 
 Using *Earliest Start Time First*
 
-	:::code
 	SORT lectures by earliest start time first
 	d = number of allocated class room
 	
