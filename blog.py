@@ -5,7 +5,11 @@ from flask_frozen import Freezer
 from configparser import ConfigParser
 from fabric.api import local
 # from pygments import pygments_style_defs
-# import pygments
+from unicodedata import normalize
+from datetime import date, datetime
+import codecs
+import re
+import os
 
 DEBUG = True 
 BASE_URL = 'https://andy-yao.com'
@@ -61,6 +65,56 @@ def cv():
 def pygments_css():
     return pygments_style_defs(style='colorful'), 200, {'Content-Type': 'text/css'}
 
+############
+# Blog Helper
+def slugify(text, delim=u'-'):
+    """Generates an slightly worse ASCII-only slug."""
+    _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
+    result = []
+    for word in _punct_re.split(text.lower()):
+        word = normalize('NFKD', word).encode('ascii', 'ignore')
+        if word:
+            result.append(word)
+    return unicode(delim.join(result))
+
+def createPost():
+    print("Create new post..")
+    section  = raw_input("What is the section? Options- [posts, courses]\n")
+    title    = raw_input("What is the title? *Optional\n")
+    summary  = raw_input("What is the summary? *Optional\n")
+    filename = raw_input("What is the file name? *Optional\n")
+    post(section, title, summary, filename)
+
+def post(section, title=None, summary=None, filename=None):
+    """ Create a new empty post.
+    """
+    if not os.path.exists(os.path.join(FLATPAGES_ROOT, section)):
+        raise u"Section '%s' does not exist" % section
+    post_date = datetime.today()
+    title = unicode(title) if title else "Untitled Post"
+    if not filename:
+        filename = u"%s.md" % slugify(title)
+    year = post_date.year
+    # pathargs = [section, str(year), filename, ]
+    pathargs = [section, filename, ]
+    filepath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+        FLATPAGES_ROOT, '/'.join(pathargs))
+    if os.path.exists(filepath):
+        raise "File %s exists" % filepath
+    content = '\n'.join([
+        u"title: %s" % title,
+        u"date: %s" % post_date.strftime("%Y-%m-%d"),
+        u"summary: %s" % summary,
+        u"image: ",
+        u"published: false\n\n",
+    ])
+    try:
+        codecs.open(filepath, 'w', encoding='utf8').write(content)
+        print(u'Created %s' % filepath)
+    except Exception, error:
+        raise error
+
+############
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "build":
@@ -75,7 +129,8 @@ if __name__ == "__main__":
         folder =    config.get('server', 'folder')
         deployCall = "scp -i {} -r build {}@{}:{}".format(key, user, path, folder)
         local(deployCall)
-
+    elif len(sys.argv) > 1 and sys.argv[1] == "new":
+        createPost()
     else:
         app.run(host="0.0.0.0", debug=True)
 
