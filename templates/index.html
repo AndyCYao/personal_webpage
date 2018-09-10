@@ -6,9 +6,10 @@
     {% for post in posts | reverse %}
         <li>
             <b><a href= "{{ url_for('post', name=post.path.replace('posts/', '')) }}"></b>
-                <span itemprop = "name">{{post.title}}</span>  
+                <b><span itemprop = "name">{{post.title}}</span></b>  
             </a> | <small><time datetime="{{ post.date }}">{{ post.date}}</time> </small>  
-            <p itemprop="description">
+            <em><small>
+                <p itemprop="description">
                 {%- if post.meta.summary and post.meta.summary|striptags|trim %}
                 {{- post.summary|trim }}
                 {%- elif post.html|striptags|trim -%}
@@ -17,7 +18,9 @@
                 {%- if post.meta.image %}
                     <img src="{{- post.image }}">
                 {%- endif -%}
-            </p>
+                </p>
+            </small>
+            </em>
         </li>
     {% else %}
         <li>No stuff.</li>
