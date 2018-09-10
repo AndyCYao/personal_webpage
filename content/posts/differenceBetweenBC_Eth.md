@@ -6,7 +6,9 @@ I was asked this question during an interview, and I couldn't answer it. Well I 
 
 --- 
 
-    The context is, how would we track a bitcoin's transaction to see if a wallet is a money launderer?
+The context is
+
+`how would we track a bitcoin's transaction to see if a wallet is a money launderer?`
 
 Below is taken from [ethereum design rational](https://github.com/ethereum/wiki/wiki/Design-Rationale#accounts-and-not-utxos).
 ## Bitcoin 
