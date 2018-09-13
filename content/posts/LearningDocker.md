@@ -6,6 +6,8 @@ summary: some helpful notes on docker and docker-compose
 ##### Docker Tips
 - with docker compose, you need to run `docker-compose rm -v` to make sure your changes are reflected, then `docker-compose up` to get the updated container again. 
 
+- `docker logs -f container_name` to check the log of the container
+
 - `docker-compose` version 2 is really different than version 3, note the environment variable format is different 
 
 - [Here]((https://medium.com/@lvthillo/customize-your-mysql-database-in-docker-723ffd59d8fb)), we can run our SQL scripts by placing them in `docker-entrypoint-initdb.d/`

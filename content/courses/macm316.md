@@ -26,7 +26,7 @@ When we can't easily get the derivative of a function, we can use the secant met
 #### Bisection Method
 The idea is to bracket the root with our guess. 
 
-we have to get `a and `b, such that `f(a) * f(b) < 0` , so opposite signs.
+we have to get `a` and `b`, such that `f(a) * f(b) < 0` , so opposite signs.
 
 then we find \\(c = (a+b)/2\\) , and we check if \\(f(c)==0\\) otherwise we set a to c, or b to c depending on the sign. 
 
@@ -54,9 +54,9 @@ The larger the square matrix in the matrix operation. The more prone to rounding
 ![Gaussian Elmination on a large random matrix](../static/images/CA2.jpeg)
 
 #### CA 3. Ill-conditioned linear systems
-We investigated how ill-condition linear systems behave when factorized. An ill condition system has high norm and condition number, higher than 1 is no good. the idea is that in a well condition system `A * A'` should be 1. 
+We investigated how ill-condition linear systems behave when factorized. An ill condition system has high norm and condition number, and higher than 1 is no good. the idea is that in a well condition system `A * A'` should be 1. 
 
-We also compared factoriation techniques vs hilbert matrices. We saw that LU factorization had the highest 2-Norm error, the QR factorization had the lowest error, and the matlab's backslash is between the two.
+We also compared factorization techniques vs hilbert matrices. We saw that LU factorization had the highest 2-Norm error, the QR factorization had the lowest error, and the matlab's backslash is between the two.
 
 However the running time of QR was the slowest, follow by Matlab backslash, then LU factorization.
 

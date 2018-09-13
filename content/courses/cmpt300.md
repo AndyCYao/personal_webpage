@@ -43,7 +43,7 @@ The page table is created per every process. the OS has to perform context switc
 #### Page Table 
 Page table keeps bit flags such as isPresent, isDirty, isReadOnly etc. these flags provide the decision for page fault. 
 
-#### Hiearchicial Page Table 
+#### Hiearchical Page Table 
 This is a lay out of page table in an effort to save space. 
 
 Outer Page or Top Page Table is the page table directory. The outer page acts as a pointer to the inner table, 
@@ -68,13 +68,13 @@ Note physical memory is less than virtual memory.
 
 ### Deadlock vs Livelock vs Starvation 
 
-Deadlock is when two processes are both waiting for the other process before they proceed. Example is 
+__Deadlock__ is when two processes are both waiting for the other process before they proceed. Example is 
 
 Given process A and B, both needs resource x and y to proceed. There is a possibility that an OS gives A x, and B y, but A now needs y, and B needs x. The processes are now deadlocked. 
 
-Livelock is when two processes are continously changing their state in response to changes in the other process. 
+__Livelock__ is when two processes are continously changing their state in response to changes in the other process. 
 
 Example. person A and B are walking towards each other and passing by in a narrow hallway. A moves to his left to allow B to pass, and B moves to his right. now the two are blocked, so they move the other way, and are blocked again. 
 
-Starvation is when a thread is not getting scheduled to run because another thread is always getting scheduled. This may be caused by having a lower priority than the other. 
+__Starvation__ is when a thread is not getting scheduled to run because another thread is always getting scheduled. This may be caused by having a lower priority than the other. 
 
