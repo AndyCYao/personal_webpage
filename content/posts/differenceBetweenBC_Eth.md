@@ -1,6 +1,7 @@
 title: What is the difference between ethereum trade and bitcoin trade
 date: 2018-09-06
-
+published: true
+summary: bitcoin and ethereum accounting differences
 
 I was asked this question during an interview, and I couldn't answer it. Well I have researched it and here is the answer.
 

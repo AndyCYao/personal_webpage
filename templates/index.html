@@ -4,6 +4,7 @@
     <ul>
     <div itemscope itemtype="http://schema.org/Blog">
     {% for post in posts | reverse %}
+        {% if post.published %}
         <li>
             <b><a href= "{{ url_for('post', name=post.path.replace('posts/', '')) }}"></b>
                 <b><span itemprop = "name">{{post.title}}</span></b>  
@@ -22,6 +23,7 @@
             </small>
             </em>
         </li>
+        {% endif %}
     {% else %}
         <li>No stuff.</li>
     {% endfor %}

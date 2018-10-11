@@ -1,7 +1,7 @@
 title: CMPT 307 Cheat Sheet
 date: 2017-12-09
 summary: This is my data structure and algorithm II class notes.
-
+published: true
 
 Course summary for 307 DS/Algorithm II with Valentine Kabanet
 

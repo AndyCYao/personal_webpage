@@ -1,5 +1,6 @@
 title: Implicit Recommender System
 date: 2017-09-21
+published: true
 
 I made a recommender system in my co-op term. I kept the model but modified it to use something other than my work's dataset. we are using implicit data to create a recommender system. The idea is that the more times a user have purchased something, the more confident we are that they like this item. We will use this as a metric.
 

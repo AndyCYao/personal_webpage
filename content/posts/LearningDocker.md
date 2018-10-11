@@ -1,7 +1,7 @@
 title: Docker Notes
 date: 2018-07-20
 summary: some helpful notes on docker and docker-compose
-
+published: true
 
 ##### Docker Tips
 - with docker compose, you need to run `docker-compose rm -v` to make sure your changes are reflected, then `docker-compose up` to get the updated container again. 
