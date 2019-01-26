@@ -1,7 +1,12 @@
 # Andy's Personal Webpage
-This is the source code for my personal webpage. I followed [this post](https://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/) for the guideline. 
+
+This is the source code for my personal webpage. This is a pelican built website. Follow this quick start https://docs.getpelican.com/en/stable/quickstart.html
+
 
 ## How to configure
+
+install venv with `python3 -m venv /path/to/new/virtual/environment`
+
 Create a new folder call `private` in the main level
 
 Create two files in this folder.
@@ -17,14 +22,6 @@ the config.ini file is where blog.py looks for the configurations
 
     [other]
     key = private/RSA Key
-
-## This branch will convert this project into a docker-machine
-flask
-apache
-    - get the current .conf file, copy it over to the apache folder
-
-
-    
 
 ## Set up 
 The blog.py lets you do 3 things
