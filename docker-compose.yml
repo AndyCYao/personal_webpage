@@ -1,0 +1,7 @@
+version: "3.2"
+services:
+  apache:
+    container_name: apache
+    build: './apache/'
+    ports: 
+      - "8080:80" # "the order is Host:Container "

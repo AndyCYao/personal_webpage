@@ -1,0 +1,2 @@
+#/bin/bash
+ssh -i "demo2.pem" ubuntu@ec2-52-34-235-68.us-west-2.compute.amazonaws.com

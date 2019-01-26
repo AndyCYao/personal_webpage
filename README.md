@@ -18,7 +18,13 @@ the config.ini file is where blog.py looks for the configurations
     [other]
     key = private/RSA Key
 
+## This branch will convert this project into a docker-machine
+flask
+apache
+    - get the current .conf file, copy it over to the apache folder
 
+
+    
 
 ## Set up 
 The blog.py lets you do 3 things

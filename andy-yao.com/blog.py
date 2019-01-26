@@ -121,6 +121,7 @@ if __name__ == "__main__":
         freezer.freeze()
         # local("cp -r static/assets build")
     elif len(sys.argv) > 1 and sys.argv[1] == "deploy":
+        # TODO change this workflow to apache/build and include dc built
         print("Deploying..")
         freezer.freeze()
         key =       config.get('other', 'key')
@@ -133,4 +134,5 @@ if __name__ == "__main__":
         createPost()
     else:
         app.run(host="0.0.0.0", debug=True)
+        #app.run(host="0.0.0.0", ssl_context=(config.get('server', 'certificate_path'), config.get('server', 'key_path')))
 
