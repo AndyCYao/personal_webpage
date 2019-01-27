@@ -1,4 +1,4 @@
-title: "AI Survey"
+title: AI Survey
 date: 2018-01-05
 code: "CMPT 310"
 semester: "Spring 2018"

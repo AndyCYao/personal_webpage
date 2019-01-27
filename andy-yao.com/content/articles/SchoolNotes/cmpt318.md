@@ -1,4 +1,4 @@
-title: "Computational Data Science"
+title: Computational Data Science
 date: 2017-09-23
 semester: "Fall 2017"
 code: "CMPT 318"

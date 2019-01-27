@@ -21,7 +21,7 @@ Below is taken from [ethereum design rational](https://github.com/ethereum/wiki/
 
 on blockchain.com, we see that every wallet's transaction is recorded publicaly.
 
-!["This is our result after two weeks"](/static/images/blockchain.png)
+!["This is our result after two weeks"]({static}/images/blockchain.png)
 
 ## Ethereum
 - Ethereum the global state stores a list of accounts, with balance, codes and internal storage. 

@@ -1,4 +1,4 @@
-title: "Comparative Programming Language"
+title: Comparative Programming Language
 date: 2018-01-05
 code: "CMPT 383"
 semester: "Spring 2018"

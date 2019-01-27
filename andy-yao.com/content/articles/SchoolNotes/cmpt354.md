@@ -1,4 +1,4 @@
-title: "Database Management"
+title: Database Management
 date: 2017-03-01
 semester: "Spring 2017"
 code: "CMPT 354"
@@ -373,7 +373,6 @@ Object Exchange Model (OEM)
 BOOK is the tag element , genre is the attribute, 'science' is attribute value
 
 there can be zero or more attribute to every element.
-![XML Tree]({{ site.url }}/images/XMLTree.jpeg)
 
 #### XML VS Relational Databases ####
 

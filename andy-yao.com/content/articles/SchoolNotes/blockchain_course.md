@@ -148,11 +148,7 @@ Learn about merkel DAG and merkel Tree
 Public Key Encryption
 We learned about RSA, Diffie-Hellman, and Elliptic Curve public key algorithm.
 
-![diffie-hellman](/static/images/diffie-hellman-key-exchange.png)
-
-<!-- <img src="/static/images/diffie-hellman-key-exchange.png"  max-width="100%" > -->
-
-
+![diffie-hellman]({static}/images/diffie-hellman-key-exchange.png)
 
 - server session key , and various vulnerabilities such as man in middle. 
 - zero knowledge proof, with analogy in the alibaba cave

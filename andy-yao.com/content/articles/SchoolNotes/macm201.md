@@ -1,4 +1,4 @@
-title: "Discrete Math II"
+title: Discrete Math II
 date: 2017-03-01
 semester: "Spring 2017"
 code: "MACM 201"

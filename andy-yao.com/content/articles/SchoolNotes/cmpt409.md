@@ -1,4 +1,4 @@
-title: "Competitive Programming"
+title: Competitive Programming
 date: 2018-01-05
 code: "CMPT 409"
 semester: "Spring 2018"

@@ -1,4 +1,4 @@
-title: "Web-Based Info System"
+title: Web-Based Info System
 date: 2017-09-24
 semester: "Fall 2017"
 code: "CMPT 470"

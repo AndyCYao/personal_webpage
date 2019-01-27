@@ -1,4 +1,4 @@
-title: "Computer Networking"
+title: Computer Networking
 date: 2017-03-01
 semester: "Spring 2017"
 code: "CMPT 371"

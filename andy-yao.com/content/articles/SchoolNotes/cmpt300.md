@@ -1,7 +1,7 @@
-title: "Operating Systems"
+title: Operating Systems
 date: 2017-03-01
-code: "CMPT 300"
-semester: "Spring 2017"
+code: CMPT 300
+semester: Spring 2017
 
 
 ## CMPT 300 Operating Systems Winter 2017

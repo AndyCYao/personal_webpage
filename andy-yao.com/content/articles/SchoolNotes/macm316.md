@@ -1,4 +1,4 @@
-title: "Numerical Analysis I"
+title: Numerical Analysis I
 date: 2018-02-22
 semester: "Spring 2018"
 code: "MACM 316"
@@ -51,7 +51,7 @@ When we repeately calculate irrational number, the number gets truncated at some
 #### CA 2. Gaussian Elmination on a large random matrix
 The larger the square matrix in the matrix operation. The more prone to rounding errors. The error grows linearly with respect to log N. 
 
-![Gaussian Elmination on a large random matrix](../static/images/CA2.jpeg)
+![Gaussian Elmination on a large random matrix]({static}/images/CA2.jpeg)
 
 #### CA 3. Ill-conditioned linear systems
 We investigated how ill-condition linear systems behave when factorized. An ill condition system has high norm and condition number, and higher than 1 is no good. the idea is that in a well condition system `A * A'` should be 1. 
