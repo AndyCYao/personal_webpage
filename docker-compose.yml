@@ -5,3 +5,5 @@ services:
     build: './apache/'
     ports: 
       - "8080:80" # "the order is Host:Container "
+    volumes:
+      - ./andy-yao.com/output:/var/www/andy-yao.com/build
