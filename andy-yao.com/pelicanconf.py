@@ -3,15 +3,13 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Andy'
-SITENAME = "Andy's Personal Blog"
+SITENAME = "Andy's Blog"
 SITEURL = ''
 
 PATH = 'content'
-
 TIMEZONE = 'America/Los_Angeles'
-
 DEFAULT_LANG = 'en'
-
+THEME = 'gum'
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
