@@ -34,4 +34,4 @@ DEFAULT_PAGINATION = False
 ARTICLE_PATHS = ['articles',]
 ARTICLE_URL = 'articles/{slug}.html'
 ARTICLE_SAVE_AS = 'articles/{slug}.html'
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images','pdfs']

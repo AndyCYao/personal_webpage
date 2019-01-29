@@ -6,8 +6,7 @@ RUN ["apt-get", "install", "-y", "apache2", "vim"]
 
 ADD andy-yao.com.conf /etc/apache2/sites-available/
 # ADD andy-yao.com-le-ssl.conf /etc/apache2/sites-available/
-
-# VOLUME [ "/var/www/andy-yao.com/build"]
+RUN mkdir -p /var/www/andy-yao.com/build
 
 RUN chmod -R 755 /var/www
 RUN a2ensite andy-yao.com.conf

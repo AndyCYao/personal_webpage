@@ -2,3 +2,6 @@
 andy-yao.com 
 
 -- handle lets encrypt and port over to docker apache
+    still couldn't do it, i was reading this https://www.linode.com/docs/security/ssl/install-lets-encrypt-to-create-ssl-certificates/ 
+
+-- add resume to the page
