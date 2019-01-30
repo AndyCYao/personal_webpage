@@ -6,14 +6,19 @@ services:
     ports: 
       - "80:80" # "the order is Host:Container "
       - "443:443"
-    # volumes:
-      # - ./data/certbot/conf:/etc/letsencrypt
-      # - ./data/certbot/www:/var/www/certbot
-      # - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      # - ./letsencrypt-site:/usr/share/nginx/html
-  # https://github.com/blacklabelops-legacy/letsencrypt
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/data/letsencrypt
   # certbot:
   #   image: certbot/certbot
   #   volumes:
-  #     - ./data/certbot/conf:/etc/letsencrypt
-  #     - ./data/certbot/www:/var/www/certbot      
+  #     - certs:/etc/letsencrypt
+  #     - certs-data:/data/letsencrypt
+  #   entrypoint:
+
+volumes:
+  certs:
+  certs-data:
+
+  # https://devsidestory.com/lets-encrypt-with-docker/#comment-3994814518
+  # https://miki725.com/docker/crypto/2017/01/29/docker+nginx+letsencrypt.html

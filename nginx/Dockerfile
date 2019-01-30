@@ -5,6 +5,7 @@ RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "vim"]
 ADD default.conf /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/www/andy-yao.com/build
+EXPOSE 80 443
 # ADD andy-yao.com.conf /etc/apache2/sites-available/
 # ADD andy-yao.com-le-ssl.conf /etc/apache2/sites-available/
 
