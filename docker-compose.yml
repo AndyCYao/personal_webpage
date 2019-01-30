@@ -1,45 +1,19 @@
 version: "3.2"
 services:
-  apache:
-    container_name: apache
-    build: './apache/'
+  nginx:
+    container_name: nginx
+    build: './nginx/'
     ports: 
       - "80:80" # "the order is Host:Container "
+      - "443:443"
     # volumes:
-      # - ./andy-yao.com/output:/var/www/andy-yao.com/build # this does not work on amazon drivers
-      # - letsencrypt_challenges:/var/www/andy-yao.com/.well-known/acme-challenge/
-
+      # - ./data/certbot/conf:/etc/letsencrypt
+      # - ./data/certbot/www:/var/www/certbot
+      # - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      # - ./letsencrypt-site:/usr/share/nginx/html
   # https://github.com/blacklabelops-legacy/letsencrypt
-  # letsencrypt:
-  #   image: blacklabelops/letsencrypt
-  #   ports:
-  #    - "80:80"
-  #    - "443:443"
-  #   volumes: 
-  #     - letsencrypt_certificates:/etc/letsencrypt 
-  #     - letsencrypt_challenges:/var/www/letsencrypt
-  #   environment:
-  #     - "LETSENCRYPT_EMAIL=andy@andy-yao.com"
-  #     - "LETSENCRYPT_DOMAIN1=www.andy-yao.com"
-  #     - "LETSENCRYPT_WEBROOT_MODE=true"
-
-# volumes:
-#   letsencrypt_certificates:
-#   letsencrypt_challenges:
-
-  # letsencrypt:
-  #   image: linuxserver/letsencrypt
-  #   container_name: letsencrypt
-  #   ports:
-  #     - 443:443
+  # certbot:
+  #   image: certbot/certbot
   #   volumes:
-  #     - /opt/appdata/letsencrypt/config:/config
-  #   restart:
-  #     always
-  #   environment:
-  #     # - PUID=1050
-  #     # - PGID=1050
-  #     - EMAIL=andy@andy-yao.com
-  #     - URL=andy-yao.com
-  #     # - SUBDOMAINS=sub,service1,service2
-  #     - TZ=American/Los_Angeles
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  #     - ./data/certbot/www:/var/www/certbot      

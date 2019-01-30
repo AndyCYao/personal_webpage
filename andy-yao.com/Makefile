@@ -72,6 +72,6 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 upload: publish
-	docker cp output/. apache:/var/www/andy-yao.com/build/
+	docker cp output/. nginx:/var/www/andy-yao.com/build/
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish 
