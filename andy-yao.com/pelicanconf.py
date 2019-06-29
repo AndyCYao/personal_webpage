@@ -24,7 +24,7 @@ AUTHOR_FEED_RSS = None
 #          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('LinkedIn', 'www.linkedin.com/in/andy-yao'),
+SOCIAL = (('LinkedIn', 'https://www.linkedin.com/in/andy-yao'),
           ('GitHub', 'https://github.com/AndyCYao'),)
 
 DEFAULT_PAGINATION = False

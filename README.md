@@ -20,8 +20,13 @@ This is the source code for my personal webpage. This is a site built with pelic
 - use `pelican --listen` to check out your website on localhost:80
 - run `make upload` to deploy the website
 
-## Todo:
+## Website Todo:
 - Done. make nginx a dedicated process in lightsail, instead of docker
 - Done. install HTTPS on lightsail.
-- modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
-- figure out why pelican --listen doesn't work
+- Done. modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
+- add an unpublish flag to each article?
+
+## Content Todos:
+- get rid of school notes
+- add github photo
+
