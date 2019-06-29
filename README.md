@@ -20,15 +20,8 @@ This is the source code for my personal webpage. This is a site built with pelic
 - use `pelican --listen` to check out your website on localhost:80
 - run `make upload` to deploy the website
 
-
-docker run -it --rm \
-      -v certs:/etc/letsencrypt \
-      -v certs-data:/data/letsencrypt \
-      deliverous/certbot \
-      certonly \
-      --webroot --webroot-path=/data/letsencrypt \
-      -d andy-yao.com -d www.andy-yao.com
-
 ## Todo:
-- make nginx a dedicated process in lightsail, instead of docker
-- install HTTPS on lightsail.
+- Done. make nginx a dedicated process in lightsail, instead of docker
+- Done. install HTTPS on lightsail.
+- modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
+- figure out why pelican --listen doesn't work

@@ -72,6 +72,8 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 upload: publish
-	docker cp output/. nginx:/var/www/andy-yao.com/build/
+	rsync -avz --delete -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem"  output/. ubuntu@52.33.96.94:/var/www/andy-yao.com/build/
+	# rsync -avz --delete  -e "ssh -i ~/.ssh/LightsailDefaultKey-us-west-2.pem"  andy/.  ubuntu@52.33.96.94:/var/www/andy-yao.com/andy/
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish 
+
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish
