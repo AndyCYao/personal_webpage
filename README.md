@@ -4,9 +4,14 @@ This is the source code for my personal webpage. This is a site built with pelic
 
 
 ## Initial Set up
-- Create your docker machine, I am using a docker-machine on EC2
-- set the machine with `eval $(docker-machine env X)`
-- in the root folder, run `docker-compose up --build -d` to build the nginx container
+
+### Nginx Set up
+- copy the nginx/default.conf into `/etc/nginx/sites-available/` , then link it to
+`sites-enabled` using `sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/`
+- check if things are right with `nginx -t`
+
+
+### Pelican Set up
 - navigate to andy-yao.com/, and run `pelican -t gum`, this applys the `gum` theme to the webpage
 
 ## General Workflow
@@ -23,3 +28,7 @@ docker run -it --rm \
       certonly \
       --webroot --webroot-path=/data/letsencrypt \
       -d andy-yao.com -d www.andy-yao.com
+
+## Todo:
+- make nginx a dedicated process in lightsail, instead of docker
+- install HTTPS on lightsail.
