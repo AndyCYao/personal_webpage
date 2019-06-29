@@ -24,7 +24,7 @@ This is the source code for my personal webpage. This is a site built with pelic
 - Done. make nginx a dedicated process in lightsail, instead of docker
 - Done. install HTTPS on lightsail.
 - Done. modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
-- add an unpublish flag to each article?
+- add an unpublish flag to each article? or other ways to prevent course notes from coming
 
 ## Content Todos:
 - get rid of school notes
