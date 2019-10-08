@@ -1,7 +1,7 @@
 title: CMPT 307 Cheat Sheet
 date: 2017-12-09
 summary: This is my data structure and algorithm II class notes.
-published: true
+status: published
 
 Course summary for 307 DS/Algorithm II with Valentine Kabanet
 
@@ -13,12 +13,12 @@ Course summary for 307 DS/Algorithm II with Valentine Kabanet
 
 - can be used to see if a graph is 2 colorable / bipartite, by creating a tree G' and see if theres an edge in original graph that connects two nodes of same level in G'. if there is, there is a odd cycle, and cannot be 2 colorable
 
-    
+
 ***Depth First Search***
 
 - useful for direct acyclic graphs DAGS. (checking if there is a cycle)
 
-- has property that an edge in original graph G  a DFS tree 
+- has property that an edge in original graph G  a DFS tree
 
 
 ***DAG and Topological ordering***
@@ -29,7 +29,7 @@ Course summary for 307 DS/Algorithm II with Valentine Kabanet
 
 - finds the shortest path to any node from starting node s.
 - can't be used for edges with negative weight.
-- uses BFS to find nodes to add to the set of explored nodes. 
+- uses BFS to find nodes to add to the set of explored nodes.
 - use min heap to order nodes of different weight
 
 ***Kruskal Algorithm***
@@ -49,7 +49,7 @@ Course summary for 307 DS/Algorithm II with Valentine Kabanet
 
 - the "find" part of Union Find combines two independent sets together
 
-- this allows Kruskal to be implemented in O(mlogn) time 
+- this allows Kruskal to be implemented in O(mlogn) time
 
 ***Link By Size***
 
@@ -67,14 +67,14 @@ given n classes with different start time and m classrooms. find the minimum m c
 
 we can verify the lower bound of the algorithm (the minimum classrooms needed) with the idea of "depth"
 
-if there are x classes that have overlapping schedule, then the depth is x, and no algorithm can use fewer than x classrooms to accomodate that. 
+if there are x classes that have overlapping schedule, then the depth is x, and no algorithm can use fewer than x classrooms to accomodate that.
 
 ***Divide and conquer***
 - refers to algorithm that divide the problem into subproblems, so smaller chunks that is easier to solve (like merge sort)
 
 - the run time of divide and conquer are usually logarithic , because we can visualize the calls in a tree structure, and each level is dividing the input size by some factor, and there are k such levels.
 
-***Counting Inversions*** 
+***Counting Inversions***
 - uses divide and conquer approach, divide the list in two halves, sort and count inversons in each half, then combine and count
 - Inversions have to do with job scheduling as well
 
@@ -84,7 +84,7 @@ if there are x classes that have overlapping schedule, then the depth is x, and 
 
 ***Weighted Interval Scheduling***
 - is a type of dynamic programming (DP)
-- need to use an array that stores the max weight at n number of jobs. 
+- need to use an array that stores the max weight at n number of jobs.
 
 ***Knapsack problem***
 - given weight n of a knapsack, find the max value of items to put in the knapsack.
@@ -93,28 +93,28 @@ if there are x classes that have overlapping schedule, then the depth is x, and 
 ***Floyd Warshall (All Shortest Path)***
 - the intuition is that if a path from \\(s\\) to \\(t\\) has intermediate nodes, let \\(a\\) be one of those nodes.  so we can breakdown the question into subproblems
 
-1. shortest path from \\(s\\) to \\(a\\) , plus 
-2. shortest path from \\(a\\) to \\(t\\) 
+1. shortest path from \\(s\\) to \\(a\\) , plus
+2. shortest path from \\(a\\) to \\(t\\)
 
 the DP array will have the value of shortest path from S to any node n
 
 ***Bellman Ford***
-- this is a DP algorithm that accomodates for negative edge cycles 
+- this is a DP algorithm that accomodates for negative edge cycles
 - initialize distance from \\(s\\) to all nodes as infinity.
 - it runs in n-1 time, (because a path has at most n-1 edges)
 - each time we update the distance from s to i node by looking every edge (u,i) (relaxing the edge)
-    :::code 
+    :::code
     if d(v) > d(u) + w(v):
         d(v) = d(u) + w(v)
 
 - the algo ends at n-1, if we want to check for negative cycles, we run the algo one more time, and see if there are any changes, if there is, that means theres negative cycle
 
 ***Longest Common Subsequence***
-- we can use a DP algorithm to solve this problem. 
+- we can use a DP algorithm to solve this problem.
 
 given two strings A and B, the recurrence is
 
-1. if A and B are same size, check if A[last bit] = B[last bit] 
+1. if A and B are same size, check if A[last bit] = B[last bit]
 2. if A and B are not same size, check max(A[lastbit] = B[last bit-1] , A[last bit-1] = B[last bit])
 
 so the memoize array is a table, and the final row / column stores the size of the sequence
@@ -123,19 +123,19 @@ so the memoize array is a table, and the final row / column stores the size of t
 ***Longest Increasing Subsequence***
 
 ***Min Cut Max Flow***
-is a network flow idea that in an s t cut, where graph is separated in two sides where s is on oneside and t is on another. the minimum cut's capacity = the max flow from s to t. 
+is a network flow idea that in an s t cut, where graph is separated in two sides where s is on oneside and t is on another. the minimum cut's capacity = the max flow from s to t.
 
 ***Ford Fulkerson Algorithm***
 Residual Graph -> a \\(graph_f\\) that has exact same nodes as G, but have added "back edges" to accomodate for unused capacity.
 
 Augment Path ->  a path in the residual graph you can add flow to
 
-takes the idea of residual graphs, the algo keeps iterating while there is an augmenting path in \\(G_f\\) 
+takes the idea of residual graphs, the algo keeps iterating while there is an augmenting path in \\(G_f\\)
 
 ***Choosing Better Path - Capacity Scaling***
 
 ***matching in a bipartite graph***
-network flow can help with finding out match in a graph, connect left side with s, and rightside with t. the edges connected to s will each have 1 capacity. 
+network flow can help with finding out match in a graph, connect left side with s, and rightside with t. the edges connected to s will each have 1 capacity.
 
 then run ford fulkerson algo, if the max flow equals to size of L then there is perfect matching, otherwise it shows the max number of matching possible.
 
@@ -190,20 +190,20 @@ theres an \\(O(n)\\) way of finding vertex covers, the result is approximately
             remove all edges related to u, v
         return S
 
-this is using the idea that S really contains set of pairs of independent nodes, 
+this is using the idea that S really contains set of pairs of independent nodes,
 
 __knapsack problem__ is NP Complete, but we can approximate the best subset sum by shrinking the values of the weights proportionaly, because finding the optimal value is \\(O(nW)\\) time
 
 not polynomial in input size. as W is a number can be written in \\(log_2(W)\\)
 
-redefine the problem as the minimum weight of a knapsack which we can obtain a solution of value >=v 
+redefine the problem as the minimum weight of a knapsack which we can obtain a solution of value >=v
 
 
 ### Proofing strategy
 ***Greedy Algorithm***
 
 think in terms of promising solutions, for each round of iteration, the invariant is that
-\\(S_{greedy} \subseteq S_{promising} \subseteq S_{greedy} +\\)some future choices 
+\\(S_{greedy} \subseteq S_{promising} \subseteq S_{greedy} +\\)some future choices
 
 the greedy algorithm chooses something that belongs to the \\(S_{promising}\\)
 
@@ -215,7 +215,7 @@ the greedy algorithm chooses something that belongs to the \\(S_{promising}\\)
 
 - build the algorithm that populates \\(A(n)\\) based on the recurrence.
 
-- retrieve the answer by looking at \\(A(n)\\), depending on the problem, the answer can be at the last spot of the array (for things like max number of something). or we need to build the answers from the array by iterating through it. 
+- retrieve the answer by looking at \\(A(n)\\), depending on the problem, the answer can be at the last spot of the array (for things like max number of something). or we need to build the answers from the array by iterating through it.
 
 *** NP Completeness ***
 
@@ -223,5 +223,5 @@ the greedy algorithm chooses something that belongs to the \\(S_{promising}\\)
 
 - find a NP Complete problem X that can reduce to z. this involves converting an instance of X to have the properties z. lets call this new converted instance Y
 
-- we then need to proof that Y Is true if and only if z is true, and vice versa. 
+- we then need to proof that Y Is true if and only if z is true, and vice versa.
 
