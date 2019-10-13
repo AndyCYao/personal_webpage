@@ -27,7 +27,14 @@ This is the source code for my personal webpage. This is a site built with pelic
 - Done add an unpublish flag to each article? or other ways to prevent course notes from coming
 
 ## Content Todos:
-- get correct formula lexing for school notes
+- Done. get correct formula lexing for school notes
+    remember if you change themes, you need to add in `base.html` the mathjax
+
+
+        <script async
+            src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
 - update About
 - add github photo
 
