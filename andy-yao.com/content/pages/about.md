@@ -7,8 +7,13 @@ Summary: This is my about page
 My name is Andy Yao, I am a software developer interested in blockchain, and finance.
 I have a BSc in computer science from Simon Fraser University, Canada, and BAH in Economics from Queen's University, Canada
 
+![Andy]({filename}/images/andy.jpg)
 ### Work Experiences
+##### RBC Capital markets
+###### Software Engineer 2019 - Present
+* Created custom python solutions to map RBC structure notes to market vendor's format. Allowed six category of structure notes to be published to new vendor platforms.
 
+Environment - SVN, AngularJS, JavaEE, Python, FpML, SQL Server
 ##### DMG Blockchain
 ###### Software Engineer 2018 to 2019
 * Lead developer for IoT (internet of things) software system to control and monitor bitcoin miners
