@@ -5,12 +5,6 @@ This is the source code for my personal webpage. This is a site built with pelic
 
 ## Initial Set up
 
-### Nginx Set up
-- copy the nginx/default.conf into `/etc/nginx/sites-available/` , then link it to
-`sites-enabled` using `sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/`
-- check if things are right with `nginx -t`
-
-
 ### Pelican Set up
 - navigate to andy-yao.com/, and run `pelican -t gum`, this applys the `gum` theme to the webpage
 
@@ -21,6 +15,8 @@ This is the source code for my personal webpage. This is a site built with pelic
 - run `pelican --debug --listen --autoreload` to check the website locally
 
 ## Website Todo:
+- Oct 4th 2021 - using netlify to host the static file instead of dockers / nginx
+    - added a runtime.txt for netlify
 - Done. make nginx a dedicated process in lightsail, instead of docker
 - Done. install HTTPS on lightsail.
 - Done. modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
