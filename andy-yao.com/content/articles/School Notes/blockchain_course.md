@@ -1,4 +1,4 @@
-title: "Blockchain Development"
+title: Blockchain Development
 date: 2018-08-11
 semester: "Summer 2018"
 code: "blockchain"

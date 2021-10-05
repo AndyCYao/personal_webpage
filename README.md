@@ -2,35 +2,14 @@
 
 This is the source code for my personal webpage. This is a site built with pelican. Follow this quick start https://docs.getpelican.com/en/stable/quickstart.html
 
-
 ## Initial Set up
 
 ### Pelican Set up
-- navigate to andy-yao.com/, and run `pelican -t gum`, this applys the `gum` theme to the webpage
+- navigate to andy-yao.com/, and run `pelican -t ../pelican-blue`, this applys the `pelican-blue` theme to the webpage
 
 ## General Workflow
 - write your blog content under andy-yao.com/content
 - use `pelican content` to build the content into `output` folder
-- run `make upload` to deploy the website
+~- run `make upload` to deploy the website~ now done with netlify, just push to master branch and netlify automatically builds
 - run `pelican --debug --listen --autoreload` to check the website locally
-
-## Website Todo:
-- Oct 4th 2021 - using netlify to host the static file instead of dockers / nginx
-    - added a runtime.txt for netlify
-- Done. make nginx a dedicated process in lightsail, instead of docker
-- Done. install HTTPS on lightsail.
-- Done. modify the pelican's `make upload` to FTP or SCP the files into lightsail's /var/www/andy-yao
-- Done add an unpublish flag to each article? or other ways to prevent course notes from coming
-
-## Content Todos:
-- Done. get correct formula lexing for school notes
-    remember if you change themes, you need to add in `base.html` the mathjax
-
-
-        <script async
-            src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-        </script>
-
-- update About
-- add github photo
 
