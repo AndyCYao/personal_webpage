@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = 'Andy'
+AUTHOR = 'Andy Yao'
 SITENAME = "Andy Yao"
 SITEURL = ''
 SIDEBAR_DIGEST = 'Capital Markets Software Developer'
