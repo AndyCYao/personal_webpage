@@ -12,14 +12,19 @@ I began to read this after finishing season 1 of House of the Dragon. I thought 
 Great book, it was written in a conversational tone and it told a high level view of the music industry from every participant's POV. 
 
 ### Pachinko - Min Jin Lee
+This was another book I read while finishing season 1 of the Apple show. I thought the show was much better due to the cinematography 
 
 ### One Man's View Of the World - Lee Kuan Yew
+I visited Singapore in May, it was so beautiful and advance looking, every where there was Lee's legacy. The most interesting thing to me was I thought he spoke Mandarin all his life, but it turned out he only learned mandarin when he was 35 years old. 
 
 ### The Things They Carried - Tim O'Brien
+A fiction about a squadron of American soldiers serving in Vietnam, I didn't find it very memorable. 
 
 ### The World For Sale - Javier Blas, Jack Farchy
+This is a great book about the world of commodity tradings. It tells the evolution of commodities traders and their extragavances and downfalls. 
 
 ### Invisible Child - Andrea Elliot
+I really liked this book, it reminded me of the documentary `Hoop Dreams`, of a documentarian recording the lives of at-risk youths in inner city America. I learned about the Hershey School for low income kids from this book. What a great social service. 
 
 ### The Bond King - Mary Childs
 
